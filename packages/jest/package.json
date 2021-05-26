@@ -1,0 +1,16 @@
+{
+  "name": "@bluecat/l10n-jest",
+  "version": "0.1.0",
+  "description": "Jest preprocessor for po files",
+  "license": "ISC",
+  "scripts": {
+    "prepack": "rollup -c"
+  },
+  "files": [
+    "index.js",
+    "README.md"
+  ],
+  "dependencies": {
+    "@bluecat/l10n-icu2obj": "^0.1.0"
+  }
+}

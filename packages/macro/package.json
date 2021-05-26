@@ -1,0 +1,22 @@
+{
+  "name": "@bluecat/l10n.macro",
+  "version": "0.1.0",
+  "description": "L10n macros",
+  "license": "ISC",
+  "scripts": {
+    "prepack": "rollup -c"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "babel-plugin-macros": ">= 3"
+  },
+  "dependencies": {
+    "@babel/helper-module-imports": "^7.13.12",
+    "@bluecat/l10n-ast2icu": "^0.1.0",
+    "@bluecat/l10n-config": "^0.1.0"
+  }
+}

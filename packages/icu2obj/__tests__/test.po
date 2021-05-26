@@ -1,0 +1,84 @@
+#. extracted from packages/converter/__tests__/test.yaml
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-17 16:35-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 3.3.6\n"
+
+#: literal
+msgid "Simple string"
+msgstr ""
+
+#: arg1
+msgid "{arg}"
+msgstr ""
+
+#: arg2
+msgid "x{arg}"
+msgstr ""
+
+#: arg3
+msgid "{arg}x"
+msgstr ""
+
+#: arg4
+msgid "x{arg}x"
+msgstr ""
+
+#: arg5
+msgid "{arg0}x{arg1}"
+msgstr ""
+
+#: arg6
+msgid "{arg0}{arg1}"
+msgstr ""
+
+#: number
+msgid "The answer is {answer, number}"
+msgstr ""
+
+#: percent
+msgid "The glass is {value, number, percent} full"
+msgstr ""
+
+#: currency
+msgid "Your fee is {fee, number, currency}"
+msgstr ""
+
+#: date
+msgid "{date, date}"
+msgstr ""
+
+#: time
+msgid "{time, time}"
+msgstr ""
+
+#: select
+msgid "{value, select, a {Alpha} other {}}"
+msgstr ""
+
+#: cardinal
+msgid "{value, plural, =0 {Zero} one {One} other {# other}}"
+msgstr ""
+
+#: cardinalOffset
+msgid ""
+"{value, plural, offset:1 =0 {nobody} =1 {you} one {you and one other} other {"
+"you and # other}}"
+msgstr ""
+
+#: ordinal
+msgid "{value, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}"
+msgstr ""
+
+#: nested
+msgid "a {middle, select, other {b {nested} d}} e"
+msgstr ""

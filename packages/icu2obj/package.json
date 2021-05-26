@@ -1,0 +1,21 @@
+{
+  "name": "@bluecat/l10n-icu2obj",
+  "version": "0.1.0",
+  "description": "Converter from source to internal message format",
+  "license": "ISC",
+  "scripts": {
+    "prepack": "rollup -c"
+  },
+  "files": [
+    "index.js",
+    "README.md"
+  ],
+  "dependencies": {
+    "@bluecat/l10n-config": "^0.1.0",
+    "@messageformat/parser": "^5.0.0",
+    "pofile": "^1.1.1"
+  },
+  "devDependencies": {
+    "@bluecat/l10n-types": "^0.1.0"
+  }
+}

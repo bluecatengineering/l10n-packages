@@ -1,0 +1,16 @@
+{
+  "name": "@bluecat/l10n-core",
+  "version": "0.1.0",
+  "description": "Core l10n functions",
+  "license": "ISC",
+  "scripts": {
+    "prepack": "rollup -c"
+  },
+  "files": [
+    "index.js",
+    "README.md"
+  ],
+  "devDependencies": {
+    "@bluecat/l10n-types": "^0.1.0"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@bluecat/l10n-config",
+  "version": "0.1.0",
+  "description": "Configuration loader",
+  "license": "ISC",
+  "scripts": {
+    "prepack": "rollup -c"
+  },
+  "files": [
+    "index.js",
+    "README.md"
+  ],
+  "dependencies": {
+    "cosmiconfig": "^7.0.0"
+  }
+}

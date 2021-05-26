@@ -1,0 +1,13 @@
+{
+  "name": "@bluecat/l10n-ast2icu",
+  "version": "0.1.0",
+  "description": "Converts Babel AST to ICU strings",
+  "license": "ISC",
+  "scripts": {
+    "prepack": "rollup -c"
+  },
+  "files": [
+    "index.js",
+    "README.md"
+  ]
+}
