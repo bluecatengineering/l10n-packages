@@ -16,5 +16,5 @@ export default (source, output) => {
 	if (!language) {
 		throw new Error('Language header is missing');
 	}
-	return (output === 'es' ? 'export default ' : 'module.exports = ') + JSON.stringify([language, messages]);
+	return (output === 'es' ? 'export default ' : 'module.exports=') + JSON.stringify([language, messages]);
 };

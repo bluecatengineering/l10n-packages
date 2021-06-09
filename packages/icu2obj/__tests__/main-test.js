@@ -34,7 +34,7 @@ describe('main', () => {
 			],
 			headers: {Language: 'baz'},
 		});
-		expect(main('source', 'other')).toBe('module.exports = ["baz",{"Xfoo":"convert","Xbar":"convert"}]');
+		expect(main('source', 'other')).toBe('module.exports=["baz",{"Xfoo":"convert","Xbar":"convert"}]');
 		expect(PO.parse.mock.calls).toEqual([['source']]);
 		expect(buildKey.mock.calls).toEqual([['foo'], ['bar']]);
 		expect(convert.mock.calls).toEqual([['FOO'], ['bar']]);
