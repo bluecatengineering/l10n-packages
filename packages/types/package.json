@@ -1,5 +1,6 @@
 {
   "name": "@bluecat/l10n-types",
   "version": "0.1.0",
+  "description": "Internal node types",
   "private": true
 }
