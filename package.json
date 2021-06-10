@@ -7,6 +7,10 @@
     "prepack": "npm t",
     "prepare": "husky install"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.bluecatlabs.net:bluecat-uiux/l10n-packages.git"
+  },
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.2",

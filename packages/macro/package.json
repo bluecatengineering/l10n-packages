@@ -11,6 +11,11 @@
     "index.d.ts",
     "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.bluecatlabs.net:bluecat-uiux/l10n-packages.git",
+    "directory": "packages/macro"
+  },
   "peerDependencies": {
     "babel-plugin-macros": ">= 3"
   },

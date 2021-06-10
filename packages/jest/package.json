@@ -10,6 +10,11 @@
     "index.js",
     "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.bluecatlabs.net:bluecat-uiux/l10n-packages.git",
+    "directory": "packages/jest"
+  },
   "dependencies": {
     "@bluecat/l10n-icu2obj": "^0.1.0"
   }

@@ -12,6 +12,11 @@
     "README.md"
   ],
   "bin": "./cli.js",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.bluecatlabs.net:bluecat-uiux/l10n-packages.git",
+    "directory": "packages/cli"
+  },
   "dependencies": {
     "@babel/parser": "^7.14.3",
     "@babel/traverse": "^7.14.2",
