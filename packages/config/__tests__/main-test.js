@@ -65,4 +65,10 @@ describe('main', () => {
 		cosmiconfigSync.mockReturnValue({search});
 		expect(() => main()).toThrow('The "catalogPath" configuration is missing');
 	});
+
+	it('throws if catalogPath does not contain {locale}', () => {
+		const search = jest.fn().mockReturnValue({config: {module: 'l10n', catalogPath: 'foo'}});
+		cosmiconfigSync.mockReturnValue({search});
+		expect(() => main()).toThrow('The "catalogPath" must contain a "{locale}" token');
+	});
 });

@@ -31,6 +31,9 @@ export default () => {
 	if (!config.catalogPath) {
 		throw new Error('The "catalogPath" configuration is missing');
 	}
+	if (!/{locale}/.test(config.catalogPath)) {
+		throw new Error('The "catalogPath" must contain a "{locale}" token');
+	}
 	const rootDir = dirname(filepath);
 	config.module = join(rootDir, config.module);
 	config.catalogPath = join(rootDir, config.catalogPath);
