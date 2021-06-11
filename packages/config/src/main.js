@@ -35,6 +35,7 @@ export default () => {
 		throw new Error('The "catalogPath" must contain a "{locale}" token');
 	}
 	const rootDir = dirname(filepath);
+	config.sourcePath = join(rootDir, config.sourcePath || 'src');
 	config.module = join(rootDir, config.module);
 	config.catalogPath = join(rootDir, config.catalogPath);
 	config.buildKey = createKeyBuilder(config.hashLength);

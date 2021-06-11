@@ -10,11 +10,12 @@ npm i -D @bluecat/l10n-cli
 
 ## Configuration
 
-Add an object with this format to `package.json`.
+Add an object with this format to `package.json`. All paths are relative to the directory where `package.json` is located.
 
 ```
 "bc-l10n": {
   "hashLength": <number>,
+  "sourcePath": <string>,
   "module": <string>,
   "catalogPath": <string>,
   "locales": <Array<string>>
@@ -29,6 +30,13 @@ It should be the minimum length which avoids clashes, clashes are validated at b
 
 - Required: yes
 - Example: `3`
+
+### sourcePath
+
+The path to the sources.
+
+- Required: no
+- Default: `"src"`
 
 ### module
 

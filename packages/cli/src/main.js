@@ -1,4 +1,5 @@
 import {promises} from 'fs';
+import {posix} from 'path';
 
 import PO from 'pofile';
 import parser from '@babel/parser';
@@ -9,6 +10,7 @@ import {convertFunction, convertTemplate, validateImport} from '@bluecat/l10n-as
 const extensions = /\.jsx?$/;
 
 const {opendir, readFile} = promises;
+const {isAbsolute, join} = posix;
 
 const collator = new Intl.Collator('en', {sensitivity: 'base'});
 
@@ -155,13 +157,19 @@ const updateLocale = (locale, strings, catalogPath, addReferences, markObsolete)
 	});
 
 export default (locale, sources) => {
-	const {hashLength, catalogPath, locales, buildKey} = loadConfig();
+	const {hashLength, sourcePath, catalogPath, locales, buildKey} = loadConfig();
+	const cwd = process.cwd();
 	const addReferences = hashLength ? (item) => (item.references = [buildKey(item.msgid)]) : () => {};
 	const strings = new Set();
 	return (
 		sources.length
-			? Promise.all(sources.filter((path) => extensions.test(path)).map((path) => parseJS(strings, path)))
-			: scanDir(strings, 'src')
+			? Promise.all(
+					sources
+						.map((path) => (isAbsolute(path) ? path : join(cwd, path)))
+						.filter((path) => path.startsWith(sourcePath) && extensions.test(path))
+						.map((path) => parseJS(strings, path))
+			  )
+			: scanDir(strings, sourcePath)
 	)
 		.then(() =>
 			locale

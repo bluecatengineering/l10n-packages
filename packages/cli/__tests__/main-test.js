@@ -26,7 +26,13 @@ describe('main', () => {
 		const callNode = {callee: {type: 'Identifier', name: 'slt'}};
 		const save = jest.fn((_, cb) => cb(new Error('Test error')));
 		const items = [{msgid: 'other'}, {msgid: 's0', obsolete: true}, {msgid: 's1'}];
-		loadConfig.mockReturnValue({hashLength: 3, catalogPath: '/foo/{locale}', locales: ['en', 'fr'], buildKey});
+		loadConfig.mockReturnValue({
+			hashLength: 3,
+			sourcePath: '/foo',
+			catalogPath: '/foo/{locale}',
+			locales: ['en', 'fr'],
+			buildKey,
+		});
 		readFile.mockResolvedValue('readFileSync');
 		parser.parse.mockReturnValue('parse');
 		convertTemplate.mockReturnValueOnce('s0').mockReturnValueOnce('s1');
@@ -50,10 +56,11 @@ describe('main', () => {
 		});
 		PO.Item.mockImplementation(() => ({}));
 		PO.load.mockImplementation((_, cb) => cb(null, {items, save}));
+		jest.spyOn(process, 'cwd').mockReturnValue('/foo');
 		jest.spyOn(console, 'error').mockImplementation(() => {});
 		jest.spyOn(process, 'exit').mockImplementation(() => {});
 
-		return main('en', ['/foo/bar.js', '/foo/baz.jsx', '/foo/blah.x']).then(() => {
+		return main('en', ['bar.js', '/foo/baz.jsx', '/foo/blah.x', '/x/y.js']).then(() => {
 			expect(readFile.mock.calls).toEqual([
 				['/foo/bar.js', 'utf8'],
 				['/foo/baz.jsx', 'utf8'],
@@ -117,7 +124,7 @@ describe('main', () => {
 		const skip = jest.fn();
 		const save = jest.fn((_, cb) => cb());
 		const items = [{msgid: 's1'}];
-		loadConfig.mockReturnValue({catalogPath: '/foo/{locale}', locales: ['en', 'fr']});
+		loadConfig.mockReturnValue({sourcePath: '/foo', catalogPath: '/foo/{locale}', locales: ['en', 'fr']});
 		opendir.mockResolvedValue({read, close});
 		read
 			.mockResolvedValueOnce({name: 'd0', isDirectory})
@@ -149,7 +156,7 @@ describe('main', () => {
 		jest.spyOn(process, 'exit').mockImplementation(() => {});
 
 		return main(undefined, []).then(() => {
-			expect(readFile.mock.calls).toEqual([['src/d0/f0.js', 'utf8']]);
+			expect(readFile.mock.calls).toEqual([['/foo/d0/f0.js', 'utf8']]);
 			expect(PO.load.mock.calls).toEqual([
 				['/foo/en.po', anyFunction],
 				['/foo/fr.po', anyFunction],
@@ -195,6 +202,7 @@ describe('main', () => {
 	});
 
 	it('logs an error if readFile fails', () => {
+		loadConfig.mockReturnValue({sourcePath: '/foo'});
 		readFile.mockRejectedValue(new Error('Test error'));
 		jest.spyOn(console, 'error').mockImplementation(() => {});
 		jest.spyOn(process, 'exit').mockImplementation(() => {});
@@ -205,6 +213,7 @@ describe('main', () => {
 	});
 
 	it('logs an error if parse fails', () => {
+		loadConfig.mockReturnValue({sourcePath: '/foo'});
 		readFile.mockResolvedValue('readFileSync');
 		parser.parse.mockImplementation(() => {
 			throw new Error('Test error');

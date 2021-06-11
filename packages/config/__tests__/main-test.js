@@ -13,7 +13,7 @@ const anyFunction = expect.any(Function);
 describe('main', () => {
 	it('return expected configuration', () => {
 		const search = jest.fn().mockReturnValue({
-			config: {foo: 'test', hashLength: 3, module: 'l10n', catalogPath: 'l10n/{locale}'},
+			config: {foo: 'test', hashLength: 3, sourcePath: 'bar', module: 'l10n', catalogPath: 'l10n/{locale}'},
 			filepath: '/foo/bar',
 		});
 		const digest = jest.fn().mockReturnValue('digest');
@@ -24,6 +24,7 @@ describe('main', () => {
 		expect(result).toEqual({
 			foo: 'test',
 			hashLength: 3,
+			sourcePath: '/foo/bar',
 			module: '/foo/l10n',
 			catalogPath: '/foo/l10n/{locale}',
 			buildKey: anyFunction,
@@ -38,13 +39,20 @@ describe('main', () => {
 		expect(() => result.buildKey('baz')).toThrow('Duplicated hash, increase hash length');
 	});
 
-	it('returns the same string if x is not configured', () => {
+	it('returns the same string if hashLength is not configured', () => {
 		const search = jest.fn().mockReturnValue({
 			config: {foo: 'test', module: 'l10n', catalogPath: 'l10n/{locale}'},
 			filepath: '/foo/bar',
 		});
 		cosmiconfigSync.mockReturnValue({search});
 		const result = main();
+		expect(result).toEqual({
+			foo: 'test',
+			sourcePath: '/foo/src',
+			module: '/foo/l10n',
+			catalogPath: '/foo/l10n/{locale}',
+			buildKey: anyFunction,
+		});
 		expect(result.buildKey('foo-bar')).toBe('foo-bar');
 	});
 
