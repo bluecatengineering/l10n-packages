@@ -68,8 +68,10 @@ const process = (ctx, message, values, pluralValue) =>
 
 export default ([locale, messages]) => {
 	const ctx = {locale, number: {}, date: {}, time: {}};
-	return (key, values) => {
+	const localize = (key, values) => {
 		const message = messages[key];
 		return message ? process(ctx, message, values) : key;
 	};
+	localize.locale = locale;
+	return localize;
 };

@@ -60,9 +60,11 @@ describe('main', () => {
 			expect(tr('unknown')).toBe('unknown');
 		});
 	});
+
 	describe('literal', () => {
 		it('returns expected string', () => {
 			expect(tr('literal')).toBe('Simple string');
+			expect(tr.locale).toBe('en');
 		});
 	});
 
