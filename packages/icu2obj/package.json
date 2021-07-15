@@ -1,6 +1,6 @@
 {
   "name": "@bluecat/l10n-icu2obj",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Converter from source to internal message format",
   "license": "ISC",
   "scripts": {
@@ -16,11 +16,11 @@
     "directory": "packages/icu2obj"
   },
   "dependencies": {
-    "@bluecat/l10n-config": "^0.1.0",
+    "@bluecat/l10n-config": "^0.1.1",
     "@messageformat/parser": "^5.0.0",
     "pofile": "^1.1.1"
   },
   "devDependencies": {
-    "@bluecat/l10n-types": "^0.1.0"
+    "@bluecat/l10n-types": "^0.1.1"
   }
 }
