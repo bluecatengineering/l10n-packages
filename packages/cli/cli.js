@@ -1,13 +1,21 @@
 #!/usr/bin/env node
 
 const argv = process.argv;
+let done;
+let clean;
 let locale;
-let sources;
-if (argv[2] === '-l') {
-	locale = argv[3];
-	sources = argv.slice(4);
-} else {
-	sources = argv.slice(2);
+let index = 2;
+while (!done) {
+	const arg = argv[index];
+	if (arg === '-c' || arg === '--clean') {
+		clean = true;
+		++index;
+	} else if (arg === '-l' || arg === '--locale') {
+		locale = argv[index + 1];
+		index += 2;
+	} else {
+		done = true;
+	}
 }
 
-require('./index')(locale, sources);
+require('./index')(clean, locale, argv.slice(index));

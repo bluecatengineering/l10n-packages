@@ -60,7 +60,7 @@ describe('main', () => {
 		jest.spyOn(console, 'error').mockImplementation(() => {});
 		jest.spyOn(process, 'exit').mockImplementation(() => {});
 
-		return main('en', ['bar.js', '/foo/baz.jsx', '/foo/blah.x', '/x/y.js']).then(() => {
+		return main(false, 'en', ['bar.js', '/foo/baz.jsx', '/foo/blah.x', '/x/y.js']).then(() => {
 			expect(readFile.mock.calls).toEqual([
 				['/foo/bar.js', 'utf8'],
 				['/foo/baz.jsx', 'utf8'],
@@ -155,7 +155,7 @@ describe('main', () => {
 		jest.spyOn(console, 'error').mockImplementation(() => {});
 		jest.spyOn(process, 'exit').mockImplementation(() => {});
 
-		return main(undefined, []).then(() => {
+		return main(false, undefined, []).then(() => {
 			expect(readFile.mock.calls).toEqual([['/foo/d0/f0.js', 'utf8']]);
 			expect(PO.load.mock.calls).toEqual([
 				['/foo/en.po', anyFunction],
@@ -167,6 +167,49 @@ describe('main', () => {
 				['/foo/en.po', anyFunction],
 				['/foo/fr.po', anyFunction],
 			]);
+
+			expect(console.error.mock.calls).toEqual([]);
+			expect(process.exit.mock.calls).toEqual([]);
+		});
+	});
+
+	it('removes obsolete entries if clean is true', () => {
+		const read = jest.fn();
+		const close = jest.fn();
+		const isDirectory = jest.fn();
+		const isFile = jest.fn();
+		const skip = jest.fn();
+		const save = jest.fn((_, cb) => cb());
+		const items = [{msgid: 's1'}, {msgid: 's2', obsolete: true}, {msgid: 's3', obsolete: true}];
+		const po = {items, save};
+		loadConfig.mockReturnValue({sourcePath: '/foo', catalogPath: '/foo/{locale}', locales: ['en']});
+		opendir.mockResolvedValue({read, close});
+		read.mockResolvedValueOnce({name: 'f0.js', isDirectory, isFile}).mockResolvedValueOnce(null);
+		isDirectory.mockReturnValueOnce(false);
+		isFile.mockReturnValueOnce(true);
+		readFile.mockResolvedValue('readFileSync');
+		parser.parse.mockReturnValue('parse');
+		convertTemplate.mockReturnValueOnce('s0').mockReturnValueOnce('s2');
+		traverse.mockImplementation((ast, {ImportDeclaration, TaggedTemplateExpression}) => {
+			ImportDeclaration({
+				node: {
+					source: {value: '@bluecat/l10n.macro'},
+					specifiers: [{imported: {name: 't'}, local: {name: 'tt'}}],
+				},
+			});
+			TaggedTemplateExpression({skip, node: {tag: {name: 'tt'}, quasi: 'quasi'}});
+			TaggedTemplateExpression({skip, node: {tag: {name: 'tt'}, quasi: 'quasi'}});
+		});
+		PO.load.mockImplementation((_, cb) => cb(null, po));
+		jest.spyOn(console, 'error').mockImplementation(() => {});
+		jest.spyOn(process, 'exit').mockImplementation(() => {});
+
+		return main(true, undefined, []).then(() => {
+			expect(readFile.mock.calls).toEqual([['/foo/f0.js', 'utf8']]);
+			expect(PO.load.mock.calls).toEqual([['/foo/en.po', anyFunction]]);
+
+			expect(po.items).toEqual([{msgid: 's0'}, {msgid: 's2', obsolete: false}]);
+			expect(save.mock.calls).toEqual([['/foo/en.po', anyFunction]]);
 
 			expect(console.error.mock.calls).toEqual([]);
 			expect(process.exit.mock.calls).toEqual([]);
@@ -185,7 +228,7 @@ describe('main', () => {
 		PO.load.mockImplementation((_, cb) => cb({code: 'ENOENT'}, null));
 		jest.spyOn(Date.prototype, 'toISOString').mockReturnValue('toISOString');
 
-		return main(undefined, []).then(() => {
+		return main(false, undefined, []).then(() => {
 			expect(PO.load.mock.calls).toEqual([['/foo/en.po', anyFunction]]);
 
 			expect(PO.mock.results[0].value).toEqual({
@@ -206,7 +249,7 @@ describe('main', () => {
 		readFile.mockRejectedValue(new Error('Test error'));
 		jest.spyOn(console, 'error').mockImplementation(() => {});
 		jest.spyOn(process, 'exit').mockImplementation(() => {});
-		return main('en', ['/foo/bar.js']).then(() => {
+		return main(false, 'en', ['/foo/bar.js']).then(() => {
 			expect(console.error.mock.calls).toEqual([['Error reading /foo/bar.js: Test error']]);
 			expect(process.exit.mock.calls).toEqual([[1]]);
 		});
@@ -220,7 +263,7 @@ describe('main', () => {
 		});
 		jest.spyOn(console, 'error').mockImplementation(() => {});
 		jest.spyOn(process, 'exit').mockImplementation(() => {});
-		return main('en', ['/foo/bar.js']).then(() => {
+		return main(false, 'en', ['/foo/bar.js']).then(() => {
 			expect(console.error.mock.calls).toEqual([['Error parsing /foo/bar.js: Test error']]);
 			expect(process.exit.mock.calls).toEqual([[1]]);
 		});
@@ -234,7 +277,7 @@ describe('main', () => {
 		jest.spyOn(console, 'error').mockImplementation(() => {});
 		jest.spyOn(process, 'exit').mockImplementation(() => {});
 
-		return main('en', ['/foo/bar.js']).then(() => {
+		return main(false, 'en', ['/foo/bar.js']).then(() => {
 			expect(PO.load.mock.calls).toEqual([['/foo/en.po', anyFunction]]);
 
 			expect(console.error.mock.calls).toEqual([['Error loading /foo/en.po: Test error']]);

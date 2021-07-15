@@ -95,7 +95,7 @@ const scanDir = (strings, basePath) =>
 		return dir.read().then(process);
 	});
 
-const updateLocale = (locale, strings, catalogPath, addReferences, markObsolete) =>
+const updateLocale = (clean, locale, strings, catalogPath, addReferences, markObsolete) =>
 	new Promise((resolve, reject) => {
 		const fileName = `${catalogPath.replace(/{locale}/, locale)}.po`;
 		PO.load(fileName, (err, po) => {
@@ -116,6 +116,7 @@ const updateLocale = (locale, strings, catalogPath, addReferences, markObsolete)
 					Language: locale,
 				};
 			} else {
+				let needsCleaning;
 				for (const item of po.items) {
 					const msgid = item.msgid;
 					if (strings.has(msgid)) {
@@ -128,6 +129,13 @@ const updateLocale = (locale, strings, catalogPath, addReferences, markObsolete)
 						item.obsolete = true;
 						changed = true;
 					}
+					if (item.obsolete) {
+						needsCleaning = true;
+					}
+				}
+				if (clean && needsCleaning) {
+					changed = true;
+					po.items = po.items.filter(({obsolete}) => !obsolete);
 				}
 			}
 
@@ -156,7 +164,7 @@ const updateLocale = (locale, strings, catalogPath, addReferences, markObsolete)
 		});
 	});
 
-export default (locale, sources) => {
+export default (clean, locale, sources) => {
 	const {hashLength, sourcePath, catalogPath, locales, buildKey} = loadConfig();
 	const cwd = process.cwd();
 	const addReferences = hashLength ? (item) => (item.references = [buildKey(item.msgid)]) : () => {};
@@ -173,9 +181,9 @@ export default (locale, sources) => {
 	)
 		.then(() =>
 			locale
-				? updateLocale(locale, strings, catalogPath, addReferences)
+				? updateLocale(clean, locale, strings, catalogPath, addReferences)
 				: Promise.all(
-						(locales || ['en']).map((locale) => updateLocale(locale, strings, catalogPath, addReferences, true))
+						(locales || ['en']).map((locale) => updateLocale(clean, locale, strings, catalogPath, addReferences, true))
 				  )
 		)
 		.catch((error) => {
