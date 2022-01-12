@@ -1,6 +1,7 @@
 import {createHash} from 'crypto';
 
-import {cosmiconfigSync} from 'cosmiconfig';
+import {lilconfigSync} from 'lilconfig';
+import {parse} from 'yaml';
 
 import main from '../src/main';
 
@@ -10,6 +11,8 @@ jest.mock('crypto', () => ({createHash: jest.fn()}));
 
 const anyFunction = expect.any(Function);
 
+parse.mockReturnValue('parse');
+
 describe('main', () => {
 	it('return expected configuration', () => {
 		const search = jest.fn().mockReturnValue({
@@ -18,7 +21,7 @@ describe('main', () => {
 		});
 		const digest = jest.fn().mockReturnValue('digest');
 		const update = jest.fn().mockReturnValue({digest});
-		cosmiconfigSync.mockReturnValue({search});
+		lilconfigSync.mockReturnValue({search});
 		createHash.mockReturnValue({update});
 		const result = main();
 		expect(result).toEqual({
@@ -29,7 +32,10 @@ describe('main', () => {
 			catalogPath: '/foo/l10n/{locale}',
 			buildKey: anyFunction,
 		});
-		expect(cosmiconfigSync.mock.calls).toEqual([['bc-l10n']]);
+		expect(lilconfigSync.mock.calls).toEqual([['bc-l10n', expect.any(Object)]]);
+
+		expect(lilconfigSync.mock.calls[0][1].loaders.noExt('x', 'foo: test')).toBe('parse');
+		expect(parse.mock.calls).toEqual([['foo: test']]);
 
 		expect(result.buildKey('foo-bar')).toBe('dig');
 		expect(createHash.mock.calls).toEqual([['sha1']]);
@@ -44,7 +50,7 @@ describe('main', () => {
 			config: {foo: 'test', module: 'l10n', catalogPath: 'l10n/{locale}'},
 			filepath: '/foo/bar',
 		});
-		cosmiconfigSync.mockReturnValue({search});
+		lilconfigSync.mockReturnValue({search});
 		const result = main();
 		expect(result).toEqual({
 			foo: 'test',
@@ -56,27 +62,33 @@ describe('main', () => {
 		expect(result.buildKey('foo-bar')).toBe('foo-bar');
 	});
 
+	it('throws if search returns null', () => {
+		const search = jest.fn().mockReturnValue(null);
+		lilconfigSync.mockReturnValue({search});
+		expect(() => main()).toThrow('L10n configuration is missing, add "bc-l10n" object to package.json');
+	});
+
 	it('throws if the config is not found', () => {
 		const search = jest.fn().mockReturnValue({});
-		cosmiconfigSync.mockReturnValue({search});
+		lilconfigSync.mockReturnValue({search});
 		expect(() => main()).toThrow('L10n configuration is missing, add "bc-l10n" object to package.json');
 	});
 
 	it('throws if module is missing', () => {
 		const search = jest.fn().mockReturnValue({config: {}});
-		cosmiconfigSync.mockReturnValue({search});
+		lilconfigSync.mockReturnValue({search});
 		expect(() => main()).toThrow('The "module" configuration is missing');
 	});
 
 	it('throws if catalogPath is missing', () => {
 		const search = jest.fn().mockReturnValue({config: {module: 'l10n'}});
-		cosmiconfigSync.mockReturnValue({search});
+		lilconfigSync.mockReturnValue({search});
 		expect(() => main()).toThrow('The "catalogPath" configuration is missing');
 	});
 
 	it('throws if catalogPath does not contain {locale}', () => {
 		const search = jest.fn().mockReturnValue({config: {module: 'l10n', catalogPath: 'foo'}});
-		cosmiconfigSync.mockReturnValue({search});
+		lilconfigSync.mockReturnValue({search});
 		expect(() => main()).toThrow('The "catalogPath" must contain a "{locale}" token');
 	});
 });

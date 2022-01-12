@@ -1,9 +1,31 @@
 import {posix} from 'path';
 import {createHash} from 'crypto';
 
-import {cosmiconfigSync} from 'cosmiconfig';
+import {lilconfigSync} from 'lilconfig';
+import {parse} from 'yaml';
 
 const {dirname, join} = posix;
+
+const loadYaml = (filepath, content) => parse(content);
+
+const options = {
+	loaders: {
+		'.yaml': loadYaml,
+		'.yml': loadYaml,
+		noExt: loadYaml,
+	},
+	searchPlaces: [
+		'package.json',
+		'.bc-l10nrc',
+		'.bc-l10nrc.json',
+		'.bc-l10nrc.yml',
+		'.bc-l10nrc.yaml',
+		'.bc-l10nrc.js',
+		'.bc-l10nrc.cjs',
+		'bc-l10n.config.js',
+		'bc-l10n.config.cjs',
+	],
+};
 
 const createKeyBuilder = (hashLength) => {
 	const hashes = new Map();
@@ -21,10 +43,11 @@ const createKeyBuilder = (hashLength) => {
 };
 
 export default () => {
-	const {config, filepath} = cosmiconfigSync('bc-l10n').search();
-	if (!config) {
+	const result = lilconfigSync('bc-l10n', options).search();
+	if (!result?.config) {
 		throw new Error('L10n configuration is missing, add "bc-l10n" object to package.json');
 	}
+	const {config, filepath} = result;
 	if (!config.module) {
 		throw new Error('The "module" configuration is missing');
 	}

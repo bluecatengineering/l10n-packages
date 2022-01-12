@@ -16,6 +16,7 @@
     "directory": "packages/config"
   },
   "dependencies": {
-    "cosmiconfig": "^7.0.0"
+    "lilconfig": "^2.0.4",
+    "yaml": "^1.10.2"
   }
 }
