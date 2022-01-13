@@ -1,6 +1,6 @@
 {
   "name": "@bluecat/l10n-cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Command line utilities for l10n",
   "license": "ISC",
   "scripts": {
@@ -20,8 +20,8 @@
   "dependencies": {
     "@babel/parser": "^7.14.3",
     "@babel/traverse": "^7.14.2",
-    "@bluecat/l10n-ast2icu": "^0.1.1",
-    "@bluecat/l10n-config": "^0.1.1",
+    "@bluecat/l10n-ast2icu": "^0.1.2",
+    "@bluecat/l10n-config": "^0.1.2",
     "pofile": "^1.1.1"
   }
 }

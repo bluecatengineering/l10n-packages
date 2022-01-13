@@ -1,6 +1,6 @@
 {
   "name": "@bluecat/l10n.macro",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "L10n macros",
   "license": "ISC",
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@babel/helper-module-imports": "^7.13.12",
-    "@bluecat/l10n-ast2icu": "^0.1.1",
-    "@bluecat/l10n-config": "^0.1.1"
+    "@bluecat/l10n-ast2icu": "^0.1.2",
+    "@bluecat/l10n-config": "^0.1.2"
   }
 }

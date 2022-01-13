@@ -1,6 +1,6 @@
 {
   "name": "@bluecat/l10n-ast2icu",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Converts Babel AST to ICU strings",
   "license": "ISC",
   "scripts": {
