@@ -14,8 +14,11 @@
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.2",
+    "@bluecateng/commitlint-config-bluecateng": "^1.0.1",
     "@bluecateng/eslint-config-node": "^2.1.0",
-    "@bluecateng/git-checks": "^1.0.0",
+    "@bluecateng/git-check-push": "^1.0.0",
+    "@commitlint/cli": "^16.0.2",
+    "@commitlint/config-conventional": "^16.0.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
@@ -52,6 +55,11 @@
     "ignorePatterns": [
       "packages/*/index.js",
       "packages/cli/cli.js"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@bluecateng/commitlint-config-bluecateng"
     ]
   },
   "jest": {
