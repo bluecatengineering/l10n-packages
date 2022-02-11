@@ -16,7 +16,7 @@ parse.mockReturnValue('parse');
 describe('main', () => {
 	it('return expected configuration', () => {
 		const search = jest.fn().mockReturnValue({
-			config: {foo: 'test', hashLength: 3, sourcePath: 'bar', module: 'l10n', catalogPath: 'l10n/{locale}'},
+			config: {foo: 'test', hashLength: 3, sourcePath: '/baz', module: 'l10n', catalogPath: 'l10n/{locale}'},
 			filepath: '/foo/bar',
 		});
 		const digest = jest.fn().mockReturnValue('digest');
@@ -27,7 +27,7 @@ describe('main', () => {
 		expect(result).toEqual({
 			foo: 'test',
 			hashLength: 3,
-			sourcePath: '/foo/bar',
+			sourcePath: '/baz',
 			module: '/foo/l10n',
 			catalogPath: '/foo/l10n/{locale}',
 			buildKey: anyFunction,

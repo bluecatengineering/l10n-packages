@@ -4,7 +4,7 @@ import {createHash} from 'crypto';
 import {lilconfigSync} from 'lilconfig';
 import {parse} from 'yaml';
 
-const {dirname, join} = posix;
+const {dirname, join, isAbsolute} = posix;
 
 const loadYaml = (filepath, content) => parse(content);
 
@@ -42,6 +42,8 @@ const createKeyBuilder = (hashLength) => {
 		: (k) => k;
 };
 
+const makeAbsolutePath = (rootDir, path) => (isAbsolute(path) ? path : join(rootDir, path));
+
 export default () => {
 	const result = lilconfigSync('bc-l10n', options).search();
 	if (!result?.config) {
@@ -58,9 +60,9 @@ export default () => {
 		throw new Error('The "catalogPath" must contain a "{locale}" token');
 	}
 	const rootDir = dirname(filepath);
-	config.sourcePath = join(rootDir, config.sourcePath || 'src');
-	config.module = join(rootDir, config.module);
-	config.catalogPath = join(rootDir, config.catalogPath);
+	config.sourcePath = makeAbsolutePath(rootDir, config.sourcePath || 'src');
+	config.module = makeAbsolutePath(rootDir, config.module);
+	config.catalogPath = makeAbsolutePath(rootDir, config.catalogPath);
 	config.buildKey = createKeyBuilder(config.hashLength);
 	return config;
 };
