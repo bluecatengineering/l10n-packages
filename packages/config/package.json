@@ -1,6 +1,6 @@
 {
   "name": "@bluecat/l10n-config",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Configuration loader",
   "license": "ISC",
   "scripts": {
