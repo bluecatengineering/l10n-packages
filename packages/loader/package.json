@@ -3,6 +3,7 @@
   "version": "0.1.3",
   "description": "Webpack loader for po files",
   "license": "ISC",
+  "sideEffects": false,
   "scripts": {
     "prepack": "rollup -c"
   },

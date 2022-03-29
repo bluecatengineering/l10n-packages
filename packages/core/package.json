@@ -3,6 +3,7 @@
   "version": "0.1.2",
   "description": "Core l10n functions",
   "license": "ISC",
+  "sideEffects": false,
   "scripts": {
     "prepack": "rollup -c"
   },

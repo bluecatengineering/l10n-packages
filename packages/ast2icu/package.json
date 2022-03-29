@@ -3,6 +3,7 @@
   "version": "0.1.2",
   "description": "Converts Babel AST to ICU strings",
   "license": "ISC",
+  "sideEffects": false,
   "scripts": {
     "prepack": "rollup -c"
   },

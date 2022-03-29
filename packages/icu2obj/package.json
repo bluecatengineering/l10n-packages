@@ -3,6 +3,7 @@
   "version": "0.1.3",
   "description": "Converter from source to internal message format",
   "license": "ISC",
+  "sideEffects": false,
   "scripts": {
     "prepack": "rollup -c"
   },
