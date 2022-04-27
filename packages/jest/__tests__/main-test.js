@@ -8,7 +8,7 @@ converter.mockReturnValue('converter');
 
 describe('main', () => {
 	it('calls converter', () => {
-		expect(main.process('source')).toBe('converter');
+		expect(main.process('source')).toEqual({code: 'converter'});
 		expect(converter.mock.calls).toEqual([['source', 'node']]);
 	});
 });
