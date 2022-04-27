@@ -17,7 +17,7 @@
     "directory": "packages/config"
   },
   "dependencies": {
-    "lilconfig": "^2.0.4",
-    "yaml": "^1.10.2"
+    "lilconfig": "^2.0.5",
+    "yaml": "^2.0.1"
   }
 }
