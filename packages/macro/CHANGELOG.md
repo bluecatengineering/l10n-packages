@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.5](https://gitlab.bluecatlabs.net/bluecat-uiux/l10n-packages/compare/@bluecat/l10n.macro@0.1.4...@bluecat/l10n.macro@0.1.5) (2022-05-06)
+
+### Bug Fixes
+
+- add pure markers to generated calls ([2faf3b3](https://gitlab.bluecatlabs.net/bluecat-uiux/l10n-packages/commit/2faf3b3f1740e1d9443b32589635d3fb87d580c5))
+
 ## 0.1.4 (2022-04-27)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
   "name": "@bluecat/l10n.macro",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "L10n macros",
   "license": "ISC",
   "sideEffects": false,
