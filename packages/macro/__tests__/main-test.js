@@ -28,7 +28,7 @@ convertFunction.mockImplementation((name, node, ctx) => {
 	return 'convertFunction';
 });
 
-describe('main', () => {
+describe('macro', () => {
 	it('calls replaceWith with new node', () => {
 		const addComment = jest.fn();
 		const replaceWith = jest.fn();
@@ -63,8 +63,10 @@ describe('main', () => {
 		expect(addDefault.mock.calls).toEqual([[path, './bar', {nameHint: 'l10n', importPosition: 'after'}]]);
 		expect(convertTemplate.mock.calls).toEqual([['quasi', anyObject]]);
 		expect(addComment.mock.calls).toEqual([
-			['leading', 'l10n: convertTemplate'],
-			['leading', 'l10n: convertFunction'],
+			['leading', '#__PURE__'],
+			['trailing', 'l10n: convertTemplate'],
+			['leading', '#__PURE__'],
+			['trailing', 'l10n: convertFunction'],
 		]);
 		expect(replaceWith.mock.calls).toEqual([
 			[
@@ -101,7 +103,7 @@ describe('main', () => {
 		]);
 	});
 
-	it('does not call addComment if environment is production', () => {
+	it('does not add trailing comment if environment is production', () => {
 		const addComment = jest.fn();
 		const replaceWith = jest.fn();
 		const references = {
@@ -117,7 +119,7 @@ describe('main', () => {
 		process.env.NODE_ENV = 'production';
 		main({references, state, babel: {types}});
 		expect(addDefault.mock.calls).toEqual([[path, '../bar', {nameHint: 'l10n', importPosition: 'after'}]]);
-		expect(addComment.mock.calls).toEqual([]);
+		expect(addComment.mock.calls).toEqual([['leading', '#__PURE__']]);
 		expect(replaceWith.mock.calls).toEqual([
 			[
 				{

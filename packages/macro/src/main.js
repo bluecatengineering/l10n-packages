@@ -62,8 +62,9 @@ export default createMacro(({references, state, babel: {types: t}}) => {
 
 		const newNode = t.callExpression(t.cloneDeep(l10nFunction), args);
 		newNode.loc = node.loc;
+		path.addComment('leading', '#__PURE__');
 		if (process.env.NODE_ENV !== 'production') {
-			path.addComment('leading', `l10n: ${string}`);
+			path.addComment('trailing', `l10n: ${string}`);
 		}
 		path.replaceWith(newNode);
 	}
