@@ -1,5 +1,5 @@
 {
-  "name": "@bluecat/l10n-loader",
+  "name": "@bluecateng/l10n-loader",
   "version": "0.1.4",
   "description": "Webpack loader for po files",
   "license": "ISC",
@@ -13,10 +13,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@gitlab.bluecatlabs.net:bluecat-uiux/l10n-packages.git",
+    "url": "git@github.com:bluecatengineering/l10n-packages.git",
     "directory": "packages/loader"
   },
   "dependencies": {
-    "@bluecat/l10n-icu2obj": "^0.1.4"
+    "@bluecateng/l10n-icu2obj": "^0.1.4"
   }
 }

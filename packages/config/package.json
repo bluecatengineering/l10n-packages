@@ -1,5 +1,5 @@
 {
-  "name": "@bluecat/l10n-config",
+  "name": "@bluecateng/l10n-config",
   "version": "0.1.4",
   "description": "Configuration loader",
   "license": "ISC",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@gitlab.bluecatlabs.net:bluecat-uiux/l10n-packages.git",
+    "url": "git@github.com:bluecatengineering/l10n-packages.git",
     "directory": "packages/config"
   },
   "dependencies": {

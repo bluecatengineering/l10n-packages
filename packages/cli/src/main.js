@@ -4,8 +4,8 @@ import {posix} from 'path';
 import PO from 'pofile';
 import parser from '@babel/parser';
 import traverse from '@babel/traverse';
-import loadConfig from '@bluecat/l10n-config';
-import {convertFunction, convertTemplate, validateImport} from '@bluecat/l10n-ast2icu';
+import loadConfig from '@bluecateng/l10n-config';
+import {convertFunction, convertTemplate, validateImport} from '@bluecateng/l10n-ast2icu';
 
 const extensions = /\.jsx?$/;
 
@@ -35,7 +35,7 @@ const parseJS = (strings, path) =>
 				traverse(ast, {
 					ImportDeclaration(path) {
 						const {source, specifiers} = path.node;
-						if (source.value === '@bluecat/l10n.macro') {
+						if (source.value === '@bluecateng/l10n.macro') {
 							specifiers.forEach(({imported, local}) => {
 								validateImport(imported);
 								localNames[local.name] = imported.name;
@@ -112,7 +112,7 @@ const updateLocale = (clean, locale, strings, catalogPath, addReferences, markOb
 					'Mime-Version': '1.0',
 					'Content-Type': 'text/plain; charset=utf-8',
 					'Content-Transfer-Encoding': '8bit',
-					'X-Generator': '@bluecat/l10n-cli',
+					'X-Generator': '@bluecateng/l10n-cli',
 					Language: locale,
 				};
 			} else {

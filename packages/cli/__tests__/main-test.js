@@ -3,8 +3,8 @@ import {promises} from 'fs';
 import PO from 'pofile';
 import parser from '@babel/parser';
 import traverse from '@babel/traverse';
-import loadConfig from '@bluecat/l10n-config';
-import {convertFunction, convertTemplate} from '@bluecat/l10n-ast2icu';
+import loadConfig from '@bluecateng/l10n-config';
+import {convertFunction, convertTemplate} from '@bluecateng/l10n-ast2icu';
 
 import main from '../src/main';
 
@@ -40,7 +40,7 @@ describe('main', () => {
 		traverse.mockImplementation((ast, {ImportDeclaration, TaggedTemplateExpression, CallExpression}) => {
 			ImportDeclaration({
 				node: {
-					source: {value: '@bluecat/l10n.macro'},
+					source: {value: '@bluecateng/l10n.macro'},
 					specifiers: [
 						{imported: {name: 't'}, local: {name: 'tt'}},
 						{imported: {name: 'select'}, local: {name: 'slt'}},
@@ -145,7 +145,7 @@ describe('main', () => {
 		traverse.mockImplementation((ast, {ImportDeclaration, TaggedTemplateExpression}) => {
 			ImportDeclaration({
 				node: {
-					source: {value: '@bluecat/l10n.macro'},
+					source: {value: '@bluecateng/l10n.macro'},
 					specifiers: [{imported: {name: 't'}, local: {name: 'tt'}}],
 				},
 			});
@@ -193,7 +193,7 @@ describe('main', () => {
 		traverse.mockImplementation((ast, {ImportDeclaration, TaggedTemplateExpression}) => {
 			ImportDeclaration({
 				node: {
-					source: {value: '@bluecat/l10n.macro'},
+					source: {value: '@bluecateng/l10n.macro'},
 					specifiers: [{imported: {name: 't'}, local: {name: 'tt'}}],
 				},
 			});
@@ -237,7 +237,7 @@ describe('main', () => {
 					'Mime-Version': '1.0',
 					'Content-Type': 'text/plain; charset=utf-8',
 					'Content-Transfer-Encoding': '8bit',
-					'X-Generator': '@bluecat/l10n-cli',
+					'X-Generator': '@bluecateng/l10n-cli',
 					Language: 'en',
 				},
 			});

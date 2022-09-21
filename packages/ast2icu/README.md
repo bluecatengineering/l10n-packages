@@ -1,4 +1,4 @@
-# `@bluecat/l10n-ast2icu`
+# `@bluecateng/l10n-ast2icu`
 
 Converts Babel AST to ICU strings.
 

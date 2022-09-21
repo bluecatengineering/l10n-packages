@@ -1,4 +1,4 @@
-# `@bluecat/l10n-config`
+# `@bluecateng/l10n-config`
 
 Configuration loader.
 

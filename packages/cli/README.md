@@ -1,11 +1,11 @@
-# `@bluecat/l10n-cli`
+# `@bluecateng/l10n-cli`
 
 Command line utilities for l10n.
 
 ## Installation
 
 ```shell
-npm i -D @bluecat/l10n-cli
+npm i -D @bluecateng/l10n-cli
 ```
 
 ## Configuration
@@ -40,7 +40,7 @@ The path to the sources.
 
 ### module
 
-The path to the module which loads the strings (see `@bluecat/l10n-core`).
+The path to the module which loads the strings (see `@bluecateng/l10n-core`).
 
 - Required: yes
 - Example: `"src/l10n"`
@@ -69,7 +69,7 @@ The command line can be used in two modes:
 - during development to extract strings from individual files for a single locale.
 - before committing to extract strings from all source files for all configured locales.
 
-`npx @bluecat/l10n-cli [ -l <locale> ] [ <file-paths> ... ]`
+`npx @bluecateng/l10n-cli [ -l <locale> ] [ <file-paths> ... ]`
 
 ### locale
 

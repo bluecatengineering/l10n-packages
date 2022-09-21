@@ -1,5 +1,5 @@
 import {parse} from '@messageformat/parser';
-import {ARGUMENT, SELECT, CARDINAL, ORDINAL, OCTOTHORPE, NUMBER, DATE, TIME} from '@bluecat/l10n-types';
+import {ARGUMENT, SELECT, CARDINAL, ORDINAL, OCTOTHORPE, NUMBER, DATE, TIME} from '@bluecateng/l10n-types';
 
 const keyToType = {
 	number: NUMBER,

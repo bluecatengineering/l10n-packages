@@ -2,8 +2,8 @@ import {posix} from 'path';
 
 import {createMacro} from 'babel-plugin-macros';
 import {addDefault} from '@babel/helper-module-imports';
-import loadConfig from '@bluecat/l10n-config';
-import {convertFunction, convertTemplate} from '@bluecat/l10n-ast2icu';
+import loadConfig from '@bluecateng/l10n-config';
+import {convertFunction, convertTemplate} from '@bluecateng/l10n-ast2icu';
 
 const {dirname, relative} = posix;
 

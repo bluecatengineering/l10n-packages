@@ -1,4 +1,4 @@
-import converter from '@bluecat/l10n-icu2obj';
+import converter from '@bluecateng/l10n-icu2obj';
 
 import main from '../src/main';
 

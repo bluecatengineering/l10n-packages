@@ -1,5 +1,5 @@
 {
-  "name": "@bluecat/l10n-core",
+  "name": "@bluecateng/l10n-core",
   "version": "0.1.3",
   "description": "Core l10n functions",
   "license": "ISC",
@@ -13,10 +13,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@gitlab.bluecatlabs.net:bluecat-uiux/l10n-packages.git",
+    "url": "git@github.com:bluecatengineering/l10n-packages.git",
     "directory": "packages/core"
   },
   "devDependencies": {
-    "@bluecat/l10n-types": "^0.1.3"
+    "@bluecateng/l10n-types": "^0.1.3"
   }
 }

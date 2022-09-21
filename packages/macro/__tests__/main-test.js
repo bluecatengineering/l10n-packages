@@ -1,5 +1,5 @@
 import {addDefault} from '@babel/helper-module-imports';
-import {convertFunction, convertTemplate} from '@bluecat/l10n-ast2icu';
+import {convertFunction, convertTemplate} from '@bluecateng/l10n-ast2icu';
 
 import main from '../src/main';
 
@@ -7,7 +7,7 @@ jest.unmock('../src/main');
 
 jest.mock('babel-plugin-macros', () => ({createMacro: (f) => f}));
 jest.mock('@babel/helper-module-imports', () => ({addDefault: jest.fn()}));
-jest.mock('@bluecat/l10n-config', () => () => ({buildKey: (x) => `X${x}`, module: '/foo/bar'}));
+jest.mock('@bluecateng/l10n-config', () => () => ({buildKey: (x) => `X${x}`, module: '/foo/bar'}));
 
 const anyObject = expect.any(Object);
 const types = {

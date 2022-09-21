@@ -1,11 +1,11 @@
-# `@bluecat/l10n-code`
+# `@bluecateng/l10n-code`
 
 Core l10n functions.
 
 ## Installation
 
 ```shell
-npm i @bluecat/l10n-core
+npm i @bluecateng/l10n-core
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ npm i @bluecat/l10n-core
 The module specified in the `module` configuration should contain this code.
 
 ```js
-import l10nLoad from '@bluecat/l10n-core';
+import l10nLoad from '@bluecateng/l10n-core';
 
 import en from './en.po';
 

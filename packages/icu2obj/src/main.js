@@ -1,5 +1,5 @@
 import PO from 'pofile';
-import loadConfig from '@bluecat/l10n-config';
+import loadConfig from '@bluecateng/l10n-config';
 
 import convert from './convert';
 

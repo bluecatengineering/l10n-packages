@@ -1,11 +1,11 @@
-# `@bluecat/l10n-loader`
+# `@bluecateng/l10n-loader`
 
 Webpack loader for po files.
 
 ## Installation
 
 ```shell
-npm i -D @bluecat/l10n-loader
+npm i -D @bluecateng/l10n-loader
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ Add this object to the `webpack` configuration.
     rules: [
       {
         test: /\.po$/,
-        loader: '@bluecat/l10n-loader',
+        loader: '@bluecateng/l10n-loader',
       },
     ],
   }

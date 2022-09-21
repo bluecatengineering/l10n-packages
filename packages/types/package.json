@@ -1,12 +1,12 @@
 {
-  "name": "@bluecat/l10n-types",
+  "name": "@bluecateng/l10n-types",
   "version": "0.1.3",
   "description": "Internal node types",
   "private": true,
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "git@gitlab.bluecatlabs.net:bluecat-uiux/l10n-packages.git",
+    "url": "git@github.com:bluecatengineering/l10n-packages.git",
     "directory": "packages/types"
   }
 }

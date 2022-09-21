@@ -1,4 +1,4 @@
-# `@bluecat/l10n-types`
+# `@bluecateng/l10n-types`
 
 Internal node types.
 

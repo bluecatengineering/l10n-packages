@@ -1,4 +1,4 @@
-# `@bluecat/l10n-icu2obj`
+# `@bluecateng/l10n-icu2obj`
 
 Converter from source to internal message format.
 

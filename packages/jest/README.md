@@ -1,11 +1,11 @@
-# `@bluecat/l10n-jest`
+# `@bluecateng/l10n-jest`
 
 Jest preprocessor for po files.
 
 ## Installation
 
 ```shell
-npm i -D @bluecat/l10n-jest
+npm i -D @bluecateng/l10n-jest
 ```
 
 ## Usage
@@ -14,6 +14,6 @@ Add this object to the `jest` configuration. If `babel-jest` is also required it
 
 ```
 "transform": {
-  "\\.po$": "@bluecat/l10n-jest"
+  "\\.po$": "@bluecateng/l10n-jest"
 }
 ```
