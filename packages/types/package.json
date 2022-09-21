@@ -1,6 +1,6 @@
 {
   "name": "@bluecateng/l10n-types",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Internal node types",
   "private": true,
   "sideEffects": false,
