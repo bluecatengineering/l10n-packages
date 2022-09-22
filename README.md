@@ -1,5 +1,8 @@
 # l10n packages
 
+![ESLint](https://github.com/bluecatengineering/l10n-packages/workflows/ESLint/badge.svg?branch=master)
+![Jest](https://github.com/bluecatengineering/l10n-packages/workflows/Jest/badge.svg?branch=master)
+![CodeQL](https://github.com/bluecatengineering/l10n-packages/workflows/CodeQL/badge.svg?branch=master)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/bluecatengineering/l10n-packages/badge)](https://api.securityscorecards.dev/projects/github.com/bluecatengineering/l10n-packages)
 
 Packages for localization.
