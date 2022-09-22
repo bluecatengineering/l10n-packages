@@ -1,5 +1,7 @@
 # l10n packages
 
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/bluecatengineering/l10n-packages/badge)](https://api.securityscorecards.dev/projects/github.com/bluecatengineering/l10n-packages)
+
 Packages for localization.
 
 ## Packages
