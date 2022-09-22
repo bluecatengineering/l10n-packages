@@ -1,6 +1,8 @@
-name: "Jest"
+name: 'Jest'
 
 on: [push, pull_request]
+
+permissions: read-all
 
 jobs:
   test:
@@ -10,31 +12,31 @@ jobs:
       checks: write
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@a12a3943b4bdde767164f792f33f40b04645d846 # tag=v3.0.0
 
-    - name: Setup node
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16
+      - name: Setup node
+        uses: actions/setup-node@2fddd8803e2f5c9604345a0b591c3020ee971a93 # tag=v3.4.1
+        with:
+          node-version: 16
 
-    - name: Run tests
-      run: |
-        npm ci
-        npx lerna run prepack
-        npm run test-ci
-      env:
-        TZ: America/Toronto
+      - name: Run tests
+        run: |
+          npm ci
+          npx lerna run prepack
+          npm run test-ci
+        env:
+          TZ: America/Toronto
 
-    - name: Publish test report
-      uses: mikepenz/action-junit-report@v3
-      if: always()
-      with:
-        report_paths: 'build/test-results/unit.xml'
+      - name: Publish test report
+        uses: mikepenz/action-junit-report@b6d6e9a8caa401e9cbe9c43f3349d267aed1b6f1 # tag=v3.5.0
+        if: always()
+        with:
+          report_paths: build/test-results/unit.xml
 
-    - name: Publish coverage report
-      uses: 5monkeys/cobertura-action@v13
-      with:
-        path: coverage/cobertura-coverage.xml
-        minimum_coverage: 100
-        fail_below_threshold: true
+      - name: Publish coverage report
+        uses: 5monkeys/cobertura-action@4157521550018abbbd29dfdf1b5963e907ea37f0 # tag=v13
+        with:
+          path: coverage/cobertura-coverage.xml
+          minimum_coverage: 100
+          fail_below_threshold: true
