@@ -1,10 +1,11 @@
 name: Scorecards
+
 on:
   branch_protection_rule:
-  schedule:
-    - cron: '35 12 * * 3'
   push:
     branches: [master]
+  schedule:
+    - cron: '35 12 * * 3'
 
 permissions: read-all
 
@@ -18,12 +19,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3.0.2
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # tag=v3.1.0
         with:
           persist-credentials: false
 
       - name: Run analysis
-        uses: ossf/scorecard-action@865b4092859256271290c77adbd10a43f4779972 # tag=v2.0.3
+        uses: ossf/scorecard-action@e363bfca00e752f91de7b7d2a77340e2e523cb18 # tag=v2.0.4
         with:
           results_file: results.sarif
           results_format: sarif
@@ -31,6 +32,6 @@ jobs:
           repo_token: ${{ secrets.SCORECARD_READ_TOKEN }}
 
       - name: Upload to code-scanning
-        uses: github/codeql-action/upload-sarif@86f3159a697a097a813ad9bfa0002412d97690a4 # tag=v2.1.25
+        uses: github/codeql-action/upload-sarif@2eeff7bf99c8a7519cedc062526ad4b79863e309 # tag=v2.1.27
         with:
           sarif_file: results.sarif
