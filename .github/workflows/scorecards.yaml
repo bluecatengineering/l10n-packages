@@ -32,6 +32,6 @@ jobs:
           repo_token: ${{ secrets.SCORECARD_READ_TOKEN }}
 
       - name: Upload to code-scanning
-        uses: github/codeql-action/upload-sarif@2eeff7bf99c8a7519cedc062526ad4b79863e309 # tag=v2.1.27
+        uses: github/codeql-action/upload-sarif@959cbb7472c4d4ad70cdfe6f4976053fe48ab394 # tag=v2.1.27
         with:
           sarif_file: results.sarif
