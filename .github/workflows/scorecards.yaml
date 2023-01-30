@@ -19,12 +19,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # tag=v3.1.0
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # tag=v3.3.0
         with:
           persist-credentials: false
 
       - name: Run analysis
-        uses: ossf/scorecard-action@e363bfca00e752f91de7b7d2a77340e2e523cb18 # tag=v2.0.4
+        uses: ossf/scorecard-action@e38b1902ae4f44df626f11ba0734b14fb91f8f86 # tag=v2.1.2
         with:
           results_file: results.sarif
           results_format: sarif
@@ -32,6 +32,6 @@ jobs:
           repo_token: ${{ secrets.SCORECARD_READ_TOKEN }}
 
       - name: Upload to code-scanning
-        uses: github/codeql-action/upload-sarif@2eeff7bf99c8a7519cedc062526ad4b79863e309 # tag=v2.1.27
+        uses: github/codeql-action/upload-sarif@3ebbd71c74ef574dbc558c82f70e52732c8b44fe # tag=v2.2.1
         with:
           sarif_file: results.sarif
