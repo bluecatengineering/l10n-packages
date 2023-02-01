@@ -1,6 +1,6 @@
 {
   "name": "@bluecateng/l10n-core",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Core l10n functions",
   "license": "ISC",
   "sideEffects": false,
@@ -17,6 +17,6 @@
     "directory": "packages/core"
   },
   "devDependencies": {
-    "@bluecateng/l10n-types": "^0.1.4"
+    "@bluecateng/l10n-types": "^0.1.5"
   }
 }

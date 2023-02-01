@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/bluecatengineering/l10n-packages/compare/@bluecateng/l10n-core@0.1.4...@bluecateng/l10n-core@0.2.0) (2023-02-01)
+
+### Features
+
+- add function to set the current locale ([d53f5f6](https://github.com/bluecatengineering/l10n-packages/commit/d53f5f6fa873b19695149799be4feb9d0e4f3b0e))
+
 ## 0.1.4 (2022-09-21)
 
 ## 0.1.3 (2022-04-27)

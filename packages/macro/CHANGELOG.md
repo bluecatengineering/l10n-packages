@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.7](https://github.com/bluecatengineering/l10n-packages/compare/@bluecateng/l10n.macro@0.1.6...@bluecateng/l10n.macro@0.1.7) (2023-02-01)
+
+**Note:** Version bump only for package @bluecateng/l10n.macro
+
 ## 0.1.6 (2022-09-21)
 
 ## [0.1.5](https://gitlab.bluecatlabs.net/bluecat-uiux/l10n-packages/compare/@bluecat/l10n.macro@0.1.4...@bluecat/l10n.macro@0.1.5) (2022-05-06)
