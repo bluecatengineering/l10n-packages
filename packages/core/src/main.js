@@ -67,11 +67,16 @@ const process = (ctx, message, values, pluralValue) =>
 		  }, '');
 
 export default ([locale, messages]) => {
-	const ctx = {locale, number: {}, date: {}, time: {}};
+	let ctx = {locale, number: {}, date: {}, time: {}};
 	const localize = (key, values) => {
 		const message = messages[key];
 		return message ? process(ctx, message, values) : key;
 	};
 	localize.locale = locale;
+	localize.load = ([newLocale, newMessages]) => {
+		messages = newMessages;
+		ctx = {locale: newLocale, number: {}, date: {}, time: {}};
+		localize.locale = newLocale;
+	};
 	return localize;
 };
