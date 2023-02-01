@@ -187,4 +187,27 @@ describe('main', () => {
 			expect(tr('nested', {middle: 'x', nested: 'c'})).toBe('a b c d e');
 		});
 	});
+
+	describe('load', () => {
+		it('loads new locale', () => {
+			tr.load([
+				'es',
+				{
+					literal: 'Texto simple',
+					number: ['La respuesta es ', [NUMBER, 'answer']],
+					date: [[DATE, 'date']],
+					time: [[TIME, 'time']],
+					cardinal: [[CARDINAL, 'value', {0: 'Cero', one: 'Uno', other: [[OCTOTHORPE], ' otro']}]],
+					ordinal: [[ORDINAL, 'value', {other: [[OCTOTHORPE], '\u00aa']}]],
+				},
+			]);
+			expect(tr.locale).toBe('es');
+			expect(tr('literal')).toBe('Texto simple');
+			expect(tr('number', {answer: 1234})).toBe('La respuesta es 1234');
+			expect(tr('date', {date: 0})).toBe('31 dic 1969');
+			expect(tr('time', {time: 0})).toBe('19:00:00');
+			expect(tr('cardinal', {value: 0})).toBe('Cero');
+			expect(tr('ordinal', {value: 21})).toBe('21\u00aa');
+		});
+	});
 });
