@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.7](https://github.com/bluecatengineering/l10n-packages/compare/@bluecateng/l10n-cli@0.1.6...@bluecateng/l10n-cli@0.1.7) (2023-02-08)
+
+### Bug Fixes
+
+- apply workaround for bug in @babel/traverse ([075ef90](https://github.com/bluecatengineering/l10n-packages/commit/075ef9061b0e31002f62ad072b0f3d591d76359b))
+
 ## [0.1.6](https://github.com/bluecatengineering/l10n-packages/compare/@bluecateng/l10n-cli@0.1.5...@bluecateng/l10n-cli@0.1.6) (2023-02-01)
 
 **Note:** Version bump only for package @bluecateng/l10n-cli
