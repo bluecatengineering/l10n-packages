@@ -3,9 +3,12 @@ import {posix} from 'path';
 
 import PO from 'pofile';
 import parser from '@babel/parser';
-import traverse from '@babel/traverse';
+import _traverse from '@babel/traverse';
 import loadConfig from '@bluecateng/l10n-config';
 import {convertFunction, convertTemplate, validateImport} from '@bluecateng/l10n-ast2icu';
+
+// workaround for https://github.com/babel/babel/issues/13855
+const traverse = _traverse.default;
 
 const extensions = /\.jsx?$/;
 
@@ -64,12 +67,12 @@ const parseJS = (strings, path) =>
 						}
 					},
 				});
-			} catch (e) {
-				throw new Error(`Error parsing ${path}: ${e.message}`);
+			} catch (error) {
+				throw new Error(`Error parsing ${path}: ${error.message}`, {cause: error});
 			}
 		},
 		(error) => {
-			throw new Error(`Error reading ${path}: ${error.message}`);
+			throw new Error(`Error reading ${path}: ${error.message}`, {cause: error});
 		}
 	);
 
@@ -187,7 +190,7 @@ export default (clean, locale, sources) => {
 				  )
 		)
 		.catch((error) => {
-			console.error(error.message);
+			console.error(error);
 			process.exit(1);
 		});
 };

@@ -2,7 +2,7 @@ import {promises} from 'fs';
 
 import PO from 'pofile';
 import parser from '@babel/parser';
-import traverse from '@babel/traverse';
+import _traverse from '@babel/traverse';
 import loadConfig from '@bluecateng/l10n-config';
 import {convertFunction, convertTemplate} from '@bluecateng/l10n-ast2icu';
 
@@ -12,7 +12,10 @@ jest.unmock('../src/main');
 
 jest.mock('fs', () => ({promises: {opendir: jest.fn(), readFile: jest.fn()}}));
 jest.mock('@babel/parser', () => ({parse: jest.fn()}));
-jest.mock('@babel/traverse', () => jest.fn());
+jest.mock('@babel/traverse', () => ({default: jest.fn()}));
+
+// workaround for https://github.com/babel/babel/issues/13855
+const traverse = _traverse.default;
 
 const anyObject = expect.any(Object);
 const anyFunction = expect.any(Function);
@@ -111,7 +114,7 @@ describe('main', () => {
 			]);
 			expect(save.mock.calls).toEqual([['/foo/en.po', anyFunction]]);
 
-			expect(console.error.mock.calls).toEqual([['Error saving /foo/en.po: Test error']]);
+			expect(console.error.mock.calls).toEqual([[new Error('Error saving /foo/en.po: Test error')]]);
 			expect(process.exit.mock.calls).toEqual([[1]]);
 		});
 	});
@@ -250,7 +253,7 @@ describe('main', () => {
 		jest.spyOn(console, 'error').mockImplementation(() => {});
 		jest.spyOn(process, 'exit').mockImplementation(() => {});
 		return main(false, 'en', ['/foo/bar.js']).then(() => {
-			expect(console.error.mock.calls).toEqual([['Error reading /foo/bar.js: Test error']]);
+			expect(console.error.mock.calls).toEqual([[new Error('Error reading /foo/bar.js: Test error')]]);
 			expect(process.exit.mock.calls).toEqual([[1]]);
 		});
 	});
@@ -264,7 +267,7 @@ describe('main', () => {
 		jest.spyOn(console, 'error').mockImplementation(() => {});
 		jest.spyOn(process, 'exit').mockImplementation(() => {});
 		return main(false, 'en', ['/foo/bar.js']).then(() => {
-			expect(console.error.mock.calls).toEqual([['Error parsing /foo/bar.js: Test error']]);
+			expect(console.error.mock.calls).toEqual([[new Error('Error parsing /foo/bar.js: Test error')]]);
 			expect(process.exit.mock.calls).toEqual([[1]]);
 		});
 	});
@@ -280,7 +283,7 @@ describe('main', () => {
 		return main(false, 'en', ['/foo/bar.js']).then(() => {
 			expect(PO.load.mock.calls).toEqual([['/foo/en.po', anyFunction]]);
 
-			expect(console.error.mock.calls).toEqual([['Error loading /foo/en.po: Test error']]);
+			expect(console.error.mock.calls).toEqual([[new Error('Error loading /foo/en.po: Test error')]]);
 			expect(process.exit.mock.calls).toEqual([[1]]);
 		});
 	});
