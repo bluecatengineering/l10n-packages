@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8](https://github.com/bluecatengineering/l10n-packages/compare/@bluecateng/l10n-cli@0.1.7...@bluecateng/l10n-cli@0.1.8) (2023-02-21)
+
+### Bug Fixes
+
+- fix all strings marked as obsolete when processing multiple locales ([58cf360](https://github.com/bluecatengineering/l10n-packages/commit/58cf36084f6ced041ba09647ce6168fd7cbd24c1))
+
 ## [0.1.7](https://github.com/bluecatengineering/l10n-packages/compare/@bluecateng/l10n-cli@0.1.6...@bluecateng/l10n-cli@0.1.7) (2023-02-08)
 
 ### Bug Fixes
