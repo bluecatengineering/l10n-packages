@@ -44,7 +44,7 @@ describe('main', () => {
 		scanDir.mockResolvedValue();
 
 		return main(true, undefined, []).then(() => {
-			expect(scanDir.mock.calls).toEqual([[empty, '/foo', /\.jsx?$/]]);
+			expect(scanDir.mock.calls).toEqual([[empty, '/foo', /\.[jt]sx?$/]]);
 			expect(updateLocale.mock.calls).toEqual([
 				['en', '/foo/{locale}', empty, anyFunction, true, true],
 				['fr', '/foo/{locale}', empty, anyFunction, true, true],
@@ -62,7 +62,7 @@ describe('main', () => {
 		scanDir.mockResolvedValue();
 
 		return main(false, undefined, []).then(() => {
-			expect(scanDir.mock.calls).toEqual([[empty, '/foo', /\.jsx?$/]]);
+			expect(scanDir.mock.calls).toEqual([[empty, '/foo', /\.[jt]sx?$/]]);
 			expect(updateLocale.mock.calls).toEqual([['en', '/foo/{locale}', empty, anyFunction, false, true]]);
 		});
 	});

@@ -21,7 +21,7 @@ export default (strings, path) =>
 				const ast = parser.parse(text, {
 					sourceFilename: path,
 					sourceType: 'module',
-					plugins: ['jsx', 'classProperties', 'doExpressions', 'throwExpressions'],
+					plugins: ['jsx', 'typescript', 'classProperties', 'doExpressions', 'throwExpressions'],
 				});
 
 				const localNames = {};

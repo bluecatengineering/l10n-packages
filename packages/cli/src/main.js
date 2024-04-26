@@ -6,7 +6,7 @@ import parseJS from './parseJS';
 import scanDir from './scanDir';
 import updateLocale from './updateLocale';
 
-const extensions = /\.jsx?$/;
+const extensions = /\.[jt]sx?$/;
 
 export default (clean, locale, sources) => {
 	const {hashLength, sourcePath, catalogPath, locales, buildKey} = loadConfig();
