@@ -114,9 +114,9 @@ describe('main', () => {
 
 	describe('time', () => {
 		it('returns expected string', () => {
-			expect(tr('time', {time: 0})).toBe('7:00:00\u202fPM');
-			expect(tr('time', {time: 3600000})).toBe('8:00:00\u202fPM');
-			expect(tr('timeShort', {time: 0})).toBe('7:00\u202fPM');
+			expect(tr('time', {time: 0})).toBe('7:00:00 PM');
+			expect(tr('time', {time: 3600000})).toBe('8:00:00 PM');
+			expect(tr('timeShort', {time: 0})).toBe('7:00 PM');
 		});
 	});
 

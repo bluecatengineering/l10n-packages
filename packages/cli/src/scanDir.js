@@ -10,8 +10,8 @@ const scanDir = (strings, basePath, extensions) =>
 				return entry.isDirectory()
 					? scanDir(strings, `${basePath}/${name}`, extensions)
 					: entry.isFile() && extensions.test(name)
-					? parseJS(strings, `${basePath}/${name}`)
-					: Promise.resolve();
+						? parseJS(strings, `${basePath}/${name}`)
+						: Promise.resolve();
 			})
 		)
 	);

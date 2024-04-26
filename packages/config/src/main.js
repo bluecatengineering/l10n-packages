@@ -38,7 +38,7 @@ const createKeyBuilder = (hashLength) => {
 				}
 				hashes.set(hash, k);
 				return hash;
-		  }
+			}
 		: (k) => k;
 };
 

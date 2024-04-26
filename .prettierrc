@@ -7,7 +7,7 @@ bracketSpacing: false
 jsxBracketSameLine: true
 
 overrides:
-- files: "*.json"
-  options:
-    useTabs: false
-    tabWidth: 2
+  - files: '*.json'
+    options:
+      useTabs: false
+      tabWidth: 2
