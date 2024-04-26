@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/bluecatengineering/l10n-packages/compare/@bluecateng/l10n-cli@0.1.8...@bluecateng/l10n-cli@0.2.0) (2024-04-26)
+
+### Features
+
+- enable parsing TypeScript sources ([8b3c04a](https://github.com/bluecatengineering/l10n-packages/commit/8b3c04ab52fe5e57266cd7fe57372d8a248c9632))
+
 ## [0.1.8](https://github.com/bluecatengineering/l10n-packages/compare/@bluecateng/l10n-cli@0.1.7...@bluecateng/l10n-cli@0.1.8) (2023-02-21)
 
 ### Bug Fixes

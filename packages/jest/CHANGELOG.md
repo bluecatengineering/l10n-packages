@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/bluecatengineering/l10n-packages/compare/@bluecateng/l10n-jest@0.3.1...@bluecateng/l10n-jest@0.3.2) (2024-04-26)
+
+**Note:** Version bump only for package @bluecateng/l10n-jest
+
 ## [0.3.1](https://github.com/bluecatengineering/l10n-packages/compare/@bluecateng/l10n-jest@0.3.0...@bluecateng/l10n-jest@0.3.1) (2023-02-01)
 
 **Note:** Version bump only for package @bluecateng/l10n-jest
