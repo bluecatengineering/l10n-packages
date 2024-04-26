@@ -53,7 +53,7 @@ describe('parseJS', () => {
 					{
 						sourceFilename: 'test.js',
 						sourceType: 'module',
-						plugins: ['jsx', 'classProperties', 'doExpressions', 'throwExpressions'],
+						plugins: ['jsx', 'typescript', 'classProperties', 'doExpressions', 'throwExpressions'],
 					},
 				],
 			]);
