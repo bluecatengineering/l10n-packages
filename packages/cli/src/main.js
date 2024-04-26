@@ -20,7 +20,7 @@ export default (clean, locale, sources) => {
 						.map((path) => (isAbsolute(path) ? path : join(cwd, path)))
 						.filter((path) => path.startsWith(sourcePath) && extensions.test(path))
 						.map((path) => parseJS(strings, path))
-			  )
+				)
 			: scanDir(strings, sourcePath, extensions)
 	)
 		.then(() =>
@@ -28,7 +28,7 @@ export default (clean, locale, sources) => {
 				? updateLocale(locale, catalogPath, strings, addReferences, clean)
 				: Promise.all(
 						(locales || ['en']).map((locale) => updateLocale(locale, catalogPath, strings, addReferences, clean, true))
-				  )
+					)
 		)
 		.catch((error) => {
 			console.error(error);

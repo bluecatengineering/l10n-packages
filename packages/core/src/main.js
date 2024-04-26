@@ -64,7 +64,7 @@ const process = (ctx, message, values, pluralValue) =>
 				return (
 					result + (type === OCTOTHORPE ? number(ctx, pluralValue) : handlers[type](ctx, values[name], data, values))
 				);
-		  }, '');
+			}, '');
 
 export default ([locale, messages]) => {
 	let ctx = {locale, number: {}, date: {}, time: {}};

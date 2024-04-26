@@ -13,10 +13,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # tag=v3.3.0
+        uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # tag=v4.1.4
 
       - name: Setup node
-        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # tag=v3.6.0
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # tag=v4.0.2
         with:
           node-version: 18
 
@@ -29,13 +29,13 @@ jobs:
           TZ: America/Toronto
 
       - name: Publish test report
-        uses: mikepenz/action-junit-report@7210fead7f92f6395c37241964df3b0f730f5e4e # tag=v3.7.1
+        uses: mikepenz/action-junit-report@9379f0ccddcab154835d4e2487555ee79614fe95 # tag=v4.2.1
         if: always()
         with:
           report_paths: build/test-results/unit.xml
 
       - name: Publish coverage report
-        uses: 5monkeys/cobertura-action@4157521550018abbbd29dfdf1b5963e907ea37f0 # tag=v13
+        uses: 5monkeys/cobertura-action@ee5787cc56634acddedc51f21c7947985531e6eb # tag=v14
         with:
           path: coverage/cobertura-coverage.xml
           minimum_coverage: 100

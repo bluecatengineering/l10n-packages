@@ -1,8 +1,5 @@
 {
-  "useWorkspaces": true,
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/*"],
   "version": "independent",
   "command": {
     "version": {
@@ -10,5 +7,6 @@
       "conventionalCommits": true,
       "push": false
     }
-  }
+  },
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json"
 }
