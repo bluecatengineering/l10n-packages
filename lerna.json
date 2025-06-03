@@ -1,6 +1,7 @@
 {
   "packages": ["packages/*"],
   "version": "independent",
+  "changelogPreset": "conventionalcommits",
   "command": {
     "version": {
       "message": "chore(release): publish",
