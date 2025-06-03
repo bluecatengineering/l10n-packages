@@ -1,6 +1,6 @@
 {
   "name": "@bluecateng/l10n-loader",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Webpack loader for po files",
   "license": "ISC",
   "sideEffects": false,
@@ -17,6 +17,6 @@
     "directory": "packages/loader"
   },
   "dependencies": {
-    "@bluecateng/l10n-icu2obj": "^0.1.7"
+    "@bluecateng/l10n-icu2obj": "^0.1.8"
   }
 }

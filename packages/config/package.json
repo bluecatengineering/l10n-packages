@@ -1,6 +1,6 @@
 {
   "name": "@bluecateng/l10n-config",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Configuration loader",
   "license": "ISC",
   "sideEffects": false,

@@ -1,6 +1,6 @@
 {
   "name": "@bluecateng/l10n-jest",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Jest preprocessor for po files",
   "license": "ISC",
   "sideEffects": false,
@@ -17,6 +17,6 @@
     "directory": "packages/jest"
   },
   "dependencies": {
-    "@bluecateng/l10n-icu2obj": "^0.1.7"
+    "@bluecateng/l10n-icu2obj": "^0.1.8"
   }
 }
