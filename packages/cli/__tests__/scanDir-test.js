@@ -10,25 +10,20 @@ jest.mock('@babel/traverse', () => ({default: jest.fn()}));
 
 describe('scanDir', () => {
 	it('calls parseJS while scanning directories recursively', () => {
-		const isDirectory = jest.fn();
 		const isFile = jest.fn();
-		readdir
-			.mockResolvedValueOnce([
-				{name: 'd0', isDirectory},
-				{name: 'f0.js', isDirectory, isFile},
-			])
-			.mockResolvedValueOnce([
-				{name: 'f1.x', isDirectory, isFile},
-				{name: 'f2.js', isDirectory, isFile},
-				{name: 'o3.js', isDirectory, isFile},
-			]);
-		isDirectory
+		readdir.mockResolvedValueOnce([
+			{name: 'd0', parentPath: '/foo', isFile},
+			{name: 'f0.js', parentPath: '/foo', isFile},
+			{name: 'f1.x', parentPath: '/foo/d0', isFile},
+			{name: 'f2.js', parentPath: '/foo/d0', isFile},
+			{name: 'o3.js', parentPath: '/foo/d0', isFile},
+		]);
+		isFile
+			.mockReturnValueOnce(false)
 			.mockReturnValueOnce(true)
-			.mockReturnValueOnce(false)
-			.mockReturnValueOnce(false)
-			.mockReturnValueOnce(false)
+			.mockReturnValueOnce(true)
+			.mockReturnValueOnce(true)
 			.mockReturnValueOnce(false);
-		isFile.mockReturnValueOnce(true).mockReturnValueOnce(true).mockReturnValueOnce(true).mockReturnValueOnce(false);
 		return scanDir('strings', '/foo', /\.jsx?$/).then(() => {
 			expect(parseJS.mock.calls).toEqual([
 				['strings', '/foo/f0.js'],
