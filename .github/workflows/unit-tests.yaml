@@ -16,9 +16,9 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # tag=v4.2.2
 
       - name: Setup node
-        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # tag=v4.2.0
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # tag=v4.4.0
         with:
-          node-version: 18
+          node-version: 22
 
       - name: Run tests
         run: |
@@ -29,7 +29,7 @@ jobs:
           TZ: America/Toronto
 
       - name: Publish test report
-        uses: mikepenz/action-junit-report@ee6b445351cd81e2f73a16a0e52d598aeac2197f # tag=v5.3.0
+        uses: mikepenz/action-junit-report@a83fd2b5d58d4fc702e690c1ea688d702d28d281 # tag=v5.6.1
         if: always()
         with:
           report_paths: build/test-results/unit.xml
