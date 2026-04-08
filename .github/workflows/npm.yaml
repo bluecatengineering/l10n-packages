@@ -1,0 +1,40 @@
+name: Npm
+
+on:
+  release:
+    types: [published, edited]
+
+permissions: read-all
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # tag=v6.0.2
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Setup node
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # tag=v6.3.0
+        with:
+          node-version: 24
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Publish packages
+        run: |
+          npm ci
+          npx lerna run prepack
+          npx lerna publish from-package -y
+
+      - name: Upload logs
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # tag=v7.0.0
+        if: failure()
+        with:
+          name: lerna-debug-log
+          path: lerna-debug.log
