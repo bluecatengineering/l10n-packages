@@ -1,6 +1,6 @@
 {
   "name": "@bluecateng/l10n-cli",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Command line utilities for l10n",
   "license": "ISC",
   "sideEffects": false,
@@ -21,8 +21,8 @@
   "dependencies": {
     "@babel/parser": "^7.14.3",
     "@babel/traverse": "^7.14.2",
-    "@bluecateng/l10n-ast2icu": "^0.1.5",
-    "@bluecateng/l10n-config": "^0.1.8",
+    "@bluecateng/l10n-ast2icu": "^0.1.6",
+    "@bluecateng/l10n-config": "^0.1.9",
     "pofile": "^1.1.1"
   }
 }
