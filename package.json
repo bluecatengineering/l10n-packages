@@ -7,7 +7,6 @@
     "test-ci": "jest --ci --silent --reporters=jest-junit --coverageReporters=cobertura",
     "lint": "eslint .",
     "lint-ci": "eslint . -f @microsoft/eslint-formatter-sarif -o build/eslint-results.sarif",
-    "prepack": "npm t",
     "prepare": "husky"
   },
   "repository": {
