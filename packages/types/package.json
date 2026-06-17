@@ -6,7 +6,7 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "git@github.com:bluecatengineering/l10n-packages.git",
+    "url": "https://github.com/bluecatengineering/l10n-packages.git",
     "directory": "packages/types"
   }
 }
