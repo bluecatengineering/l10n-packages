@@ -21,7 +21,7 @@
     "@bluecateng/eslint-config-node": "^5.0.2",
     "@bluecateng/git-check-push": "^1.0.0",
     "@commitlint/cli": "^20.3.0",
-    "@commitlint/config-conventional": "^20.3.0",
+    "@commitlint/config-conventional": "^21.0.2",
     "@microsoft/eslint-formatter-sarif": "^3.0.0",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-terser": "^1.0.0",
