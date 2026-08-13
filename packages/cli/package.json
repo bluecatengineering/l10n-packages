@@ -22,8 +22,8 @@
     "directory": "packages/cli"
   },
   "dependencies": {
-    "@babel/parser": "^7.14.3",
-    "@babel/traverse": "^7.14.2",
+    "@babel/parser": "^8.0.4",
+    "@babel/traverse": "^8.0.4",
     "@bluecateng/l10n-ast2icu": "^0.1.6",
     "@bluecateng/l10n-config": "^0.1.9",
     "@bluecateng/l10n-icu2obj": "^0.1.9",

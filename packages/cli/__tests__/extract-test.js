@@ -7,7 +7,8 @@ import scanDir from '../src/scanDir';
 
 jest.unmock('../src/extract');
 
-jest.mock('@babel/traverse', () => ({default: jest.fn()}));
+jest.mock('@babel/parser', () => ({parse: jest.fn()}));
+jest.mock('@babel/traverse', () => ({__esModule: true, default: jest.fn()}));
 
 const anyFunction = expect.any(Function);
 

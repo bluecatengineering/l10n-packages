@@ -1,11 +1,8 @@
 import {readFile} from 'node:fs/promises';
 
-import parser from '@babel/parser';
-import _traverse from '@babel/traverse';
+import {parse} from '@babel/parser';
+import traverse from '@babel/traverse';
 import {convertFunction, convertTemplate, validateImport} from '@bluecateng/l10n-ast2icu';
-
-// workaround for https://github.com/babel/babel/issues/13855
-const traverse = _traverse.default;
 
 const buildContext = (localNames) => {
 	let counter = 0;
@@ -18,7 +15,7 @@ export default (strings, path) =>
 	readFile(path, 'utf8').then(
 		(text) => {
 			try {
-				const ast = parser.parse(text, {
+				const ast = parse(text, {
 					sourceFilename: path,
 					sourceType: 'module',
 					plugins: ['jsx', 'typescript', 'classProperties', 'doExpressions', 'throwExpressions'],
