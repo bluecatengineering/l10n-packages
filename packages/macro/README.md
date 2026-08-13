@@ -2,6 +2,8 @@
 
 L10n macros.
 
+Upgrading from an older major version? See the [migration guide](https://github.com/bluecatengineering/l10n-packages/blob/master/MIGRATION.md).
+
 ## Installation
 
 ```shell

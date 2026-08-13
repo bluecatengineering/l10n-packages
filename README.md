@@ -7,6 +7,8 @@
 
 Packages for localization.
 
+Upgrading from an older major version? See the [migration guide](MIGRATION.md).
+
 ## Packages
 
 | Package                                      | Description                                      |
