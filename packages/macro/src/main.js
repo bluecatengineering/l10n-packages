@@ -1,6 +1,6 @@
 import {posix} from 'path';
 
-import {createMacro} from 'babel-plugin-macros';
+import babelPluginMacros from 'babel-plugin-macros';
 import {addDefault} from '@babel/helper-module-imports';
 import loadConfig from '@bluecateng/l10n-config';
 import {convertFunction, convertTemplate} from '@bluecateng/l10n-ast2icu';
@@ -21,7 +21,7 @@ const buildContext = (localNames) => {
 	return {localNames, addNamedArg, addNumArg, namedArgs, numArgs};
 };
 
-export default createMacro(({references, state, babel: {types: t}}) => {
+export default babelPluginMacros.createMacro(({references, state, babel: {types: t}}) => {
 	const localNames = Object.fromEntries(
 		Object.entries(references)
 			.filter(([, v]) => v.length)

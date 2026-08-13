@@ -5,6 +5,8 @@
   "license": "ISC",
   "sideEffects": false,
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./index.d.ts",
   "exports": {
     ".": {
       "types": "./index.d.ts",
