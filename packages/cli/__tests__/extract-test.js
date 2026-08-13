@@ -1,17 +1,17 @@
 import loadConfig from '@bluecateng/l10n-config';
 
-import main from '../src/main';
+import extract from '../src/extract';
 import parseJS from '../src/parseJS';
 import updateLocale from '../src/updateLocale';
 import scanDir from '../src/scanDir';
 
-jest.unmock('../src/main');
+jest.unmock('../src/extract');
 
 jest.mock('@babel/traverse', () => ({default: jest.fn()}));
 
 const anyFunction = expect.any(Function);
 
-describe('main', () => {
+describe('extract', () => {
 	it('updates the specified locale for the specified sources', () => {
 		const empty = new Set();
 		const buildKey = jest.fn((x) => `X${x}`);
@@ -24,7 +24,7 @@ describe('main', () => {
 		});
 		jest.spyOn(process, 'cwd').mockReturnValue('/foo');
 
-		return main(false, 'en', ['bar.js', '/foo/baz.jsx', '/foo/blah.x', '/x/y.js']).then(() => {
+		return extract(false, 'en', ['bar.js', '/foo/baz.jsx', '/foo/blah.x', '/x/y.js']).then(() => {
 			expect(parseJS.mock.calls).toEqual([
 				[empty, '/foo/bar.js'],
 				[empty, '/foo/baz.jsx'],
@@ -43,7 +43,7 @@ describe('main', () => {
 		loadConfig.mockReturnValue({sourcePath: '/foo', catalogPath: '/foo/{locale}', locales: ['en', 'fr']});
 		scanDir.mockResolvedValue();
 
-		return main(true, undefined, []).then(() => {
+		return extract(true, undefined, []).then(() => {
 			expect(scanDir.mock.calls).toEqual([[empty, '/foo', /\.[jt]sx?$/]]);
 			expect(updateLocale.mock.calls).toEqual([
 				['en', '/foo/{locale}', empty, anyFunction, true, true],
@@ -61,7 +61,7 @@ describe('main', () => {
 		loadConfig.mockReturnValue({sourcePath: '/foo', catalogPath: '/foo/{locale}'});
 		scanDir.mockResolvedValue();
 
-		return main(false, undefined, []).then(() => {
+		return extract(false, undefined, []).then(() => {
 			expect(scanDir.mock.calls).toEqual([[empty, '/foo', /\.[jt]sx?$/]]);
 			expect(updateLocale.mock.calls).toEqual([['en', '/foo/{locale}', empty, anyFunction, false, true]]);
 		});
@@ -73,7 +73,7 @@ describe('main', () => {
 		jest.spyOn(console, 'error').mockImplementation(() => {});
 		jest.spyOn(process, 'exit').mockImplementation(() => {});
 
-		return main(false, 'en', []).then(() => {
+		return extract(false, 'en', []).then(() => {
 			expect(console.error.mock.calls).toEqual([[new Error('Test error')]]);
 			expect(process.exit.mock.calls).toEqual([[1]]);
 		});

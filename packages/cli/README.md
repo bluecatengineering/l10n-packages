@@ -64,6 +64,8 @@ List of [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) locale codes.
 
 ## Usage
 
+### Extracting strings
+
 The command line can be used in two modes:
 
 - during development to extract strings from individual files for a single locale.
@@ -71,14 +73,27 @@ The command line can be used in two modes:
 
 `npx @bluecateng/l10n-cli [ -l <locale> ] [ <file-paths> ... ]`
 
-### locale
+#### locale
 
 The single locale code to update. If not specified, all the configured locales will be updated.
 
-### file-paths
+#### file-paths
 
 The paths to the source files from which strings will be extracted.
 If not specified, all the source files will be scanned.
+
+### Building catalogs
+
+Compiles the `.po` catalog for every configured locale into a `.po.js` module that can be imported directly (see `@bluecateng/l10n-core`).
+
+`npx @bluecateng/l10n-cli build <outDir>`
+
+#### outDir
+
+The directory where the compiled `.po.js` files will be written.
+Each catalog is written at the path corresponding to its `catalogPath`, made relative to `sourcePath` and rooted at `outDir`.
+
+- Example: with `sourcePath` `"src"` and `catalogPath` `"src/l10n/{locale}"`, the `en` catalog is written to `<outDir>/l10n/en.po.js`.
 
 ## Usage as a file watcher in JetBrains IDEs (WebStorm/IDEA)
 
