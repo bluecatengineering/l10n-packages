@@ -39,6 +39,10 @@
   "workspaces": [
     "packages/*"
   ],
+  "engines": {
+    "node": "^24.19.0",
+    "npm": "^11.17.0"
+  },
   "commitlint": {
     "extends": [
       "@bluecateng/commitlint-config-bluecateng"
@@ -49,7 +53,7 @@
     "clearMocks": true,
     "collectCoverage": true,
     "coveragePathIgnorePatterns": [
-      "packages/.*/index.js"
+      "packages/.*/dist/.*"
     ],
     "coverageThreshold": {
       "global": {

@@ -8,6 +8,12 @@ export default [
 		},
 	},
 	{
-		ignores: ['packages/*/index.js', 'packages/cli/cli.js'],
+		files: ['packages/cli/cli.js'],
+		rules: {
+			'import/extensions': ['warn', 'always'],
+		},
+	},
+	{
+		ignores: ['packages/*/dist/'],
 	},
 ];
