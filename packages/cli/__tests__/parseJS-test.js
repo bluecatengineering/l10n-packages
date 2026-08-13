@@ -1,7 +1,7 @@
 import {readFile} from 'node:fs/promises';
 
-import parser from '@babel/parser';
-import _traverse from '@babel/traverse';
+import {parse} from '@babel/parser';
+import traverse from '@babel/traverse';
 import {convertFunction, convertTemplate} from '@bluecateng/l10n-ast2icu';
 
 import parseJS from '../src/parseJS';
@@ -10,10 +10,7 @@ jest.unmock('../src/parseJS');
 
 jest.mock('node:fs/promises', () => ({readFile: jest.fn()}));
 jest.mock('@babel/parser', () => ({parse: jest.fn()}));
-jest.mock('@babel/traverse', () => ({default: jest.fn()}));
-
-// workaround for https://github.com/babel/babel/issues/13855
-const traverse = _traverse.default;
+jest.mock('@babel/traverse', () => ({__esModule: true, default: jest.fn()}));
 
 const anyObject = expect.any(Object);
 
@@ -23,7 +20,7 @@ describe('parseJS', () => {
 		const skip = jest.fn();
 		const callNode = {callee: {type: 'Identifier', name: 'slt'}};
 		readFile.mockResolvedValue('readFile');
-		parser.parse.mockReturnValue('parse');
+		parse.mockReturnValue('parse');
 		convertTemplate.mockReturnValueOnce('s0').mockReturnValueOnce('s1');
 		convertFunction.mockReturnValueOnce('s0').mockReturnValueOnce('s2');
 		traverse.mockImplementation((ast, {ImportDeclaration, TaggedTemplateExpression, CallExpression}) => {
@@ -47,7 +44,7 @@ describe('parseJS', () => {
 		});
 		return parseJS(strings, 'test.js').then(() => {
 			expect(readFile.mock.calls).toEqual([['test.js', 'utf8']]);
-			expect(parser.parse.mock.calls).toEqual([
+			expect(parse.mock.calls).toEqual([
 				[
 					'readFile',
 					{
@@ -83,7 +80,7 @@ describe('parseJS', () => {
 
 	it('fails if parse fails', () => {
 		readFile.mockResolvedValue('readFile');
-		parser.parse.mockImplementation(() => {
+		parse.mockImplementation(() => {
 			throw new Error('Test error');
 		});
 		return expect(parseJS(new Set(), 'test.js')).rejects.toThrow('Error parsing test.js: Test error');

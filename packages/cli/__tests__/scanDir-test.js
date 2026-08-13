@@ -6,7 +6,8 @@ import parseJS from '../src/parseJS';
 jest.unmock('../src/scanDir');
 
 jest.mock('node:fs/promises', () => ({readdir: jest.fn()}));
-jest.mock('@babel/traverse', () => ({default: jest.fn()}));
+jest.mock('@babel/parser', () => ({parse: jest.fn()}));
+jest.mock('@babel/traverse', () => ({__esModule: true, default: jest.fn()}));
 
 describe('scanDir', () => {
 	it('calls parseJS while scanning directories recursively', () => {
