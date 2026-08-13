@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+import {extract, build} from './dist/index.js';
+
 const argv = process.argv;
 let done;
 let clean;
@@ -17,8 +19,6 @@ while (!done) {
 		done = true;
 	}
 }
-
-const {extract, build} = require('./index');
 
 if (argv[index] === 'build') {
 	build(argv[index + 1]);

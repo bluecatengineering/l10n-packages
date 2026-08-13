@@ -4,11 +4,13 @@
   "description": "Converter from source to internal message format",
   "license": "ISC",
   "sideEffects": false,
+  "type": "module",
+  "exports": "./dist/index.js",
   "scripts": {
     "prepack": "rollup -c"
   },
   "files": [
-    "index.js",
+    "dist",
     "README.md"
   ],
   "repository": {

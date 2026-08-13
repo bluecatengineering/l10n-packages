@@ -4,11 +4,18 @@
   "description": "L10n macros",
   "license": "ISC",
   "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
     "prepack": "rollup -c"
   },
   "files": [
-    "index.js",
+    "dist",
     "index.d.ts",
     "README.md"
   ],
