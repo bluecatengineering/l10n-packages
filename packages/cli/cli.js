@@ -18,4 +18,10 @@ while (!done) {
 	}
 }
 
-require('./index')(clean, locale, argv.slice(index));
+const {extract, build} = require('./index');
+
+if (argv[index] === 'build') {
+	build(argv[index + 1]);
+} else {
+	extract(clean, locale, argv.slice(index));
+}
