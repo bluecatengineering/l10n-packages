@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.0](https://github.com/bluecatengineering/l10n-packages/compare/%40bluecateng%2Fl10n.macro%400.1.10...%40bluecateng%2Fl10n.macro%400.2.0) (2026-08-14)
+
+### ⚠ BREAKING CHANGES
+
+- published packages are now ESM-only; require() of these
+  packages needs Node's require(esm) support (Node >=22.12), and the bundled
+  entry point moved from index.js to dist/index.js.
+- published packages now require Babel 8 where Babel is a
+  runtime dependency (packages/cli, packages/macro). Consumers pinning
+  @babel/core, @babel/parser, @babel/traverse, or @babel/helper-module-imports
+  themselves should upgrade those to ^8 as well.
+
+### Features
+
+- migrate to Babel 8 ([0334c7b](https://github.com/bluecatengineering/l10n-packages/commit/0334c7bde53fd19fe9c41d6ffb6adda3c6ff29e6)), references [babel/babel#13855](https://github.com/babel/babel/issues/13855)
+- publish packages as ESM-only, build output under dist/ ([b6d440b](https://github.com/bluecatengineering/l10n-packages/commit/b6d440bd772775f212e8c5d1792acb8864b3c05c))
+
+### Bug Fixes
+
+- resolve ESM-conversion regressions in legacy CJS tooling ([f067434](https://github.com/bluecatengineering/l10n-packages/commit/f0674346b25cc6231a6f4dd2549af139a5f15e6f))
+
 ## [0.1.10](https://github.com/bluecatengineering/l10n-packages/compare/@bluecateng/l10n.macro@0.1.9...@bluecateng/l10n.macro@0.1.10) (2026-04-08)
 
 **Note:** Version bump only for package @bluecateng/l10n.macro

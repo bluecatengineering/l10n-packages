@@ -1,6 +1,6 @@
 {
   "name": "@bluecateng/l10n.macro",
-  "version": "0.1.10",
+  "version": "0.2.0",
   "description": "L10n macros",
   "license": "ISC",
   "sideEffects": false,
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@babel/helper-module-imports": "^8.0.0",
-    "@bluecateng/l10n-ast2icu": "^0.1.6",
-    "@bluecateng/l10n-config": "^0.1.9"
+    "@bluecateng/l10n-ast2icu": "^0.2.0",
+    "@bluecateng/l10n-config": "^0.2.0"
   }
 }
