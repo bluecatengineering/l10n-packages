@@ -1,0 +1,39 @@
+{
+  "name": "@bluecateng/l10n-swc-plugin",
+  "version": "0.0.0",
+  "description": "SWC plugin to compile the l10n macros",
+  "license": "ISC",
+  "sideEffects": false,
+  "type": "module",
+  "main": "./l10n_swc_plugin.wasm",
+  "exports": {
+    ".": "./l10n_swc_plugin.wasm",
+    "./config": {
+      "types": "./config.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "engines": {
+    "node": "^22.18.0 || >=24.11.0"
+  },
+  "scripts": {
+    "prepack": "cargo build --release --target wasm32-wasip1 && cp target/wasm32-wasip1/release/l10n_swc_plugin.wasm . && rollup -c"
+  },
+  "files": [
+    "dist",
+    "config.d.ts",
+    "l10n_swc_plugin.wasm",
+    "README.md"
+  ],
+  "keywords": [
+    "swc-plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bluecatengineering/l10n-packages.git",
+    "directory": "packages/swc-plugin"
+  },
+  "dependencies": {
+    "@bluecateng/l10n-config": "^0.2.0"
+  }
+}

@@ -23,11 +23,15 @@ jobs:
         with:
           node-version: 24
 
+      - name: Setup Rust
+        run: rustup toolchain install
+
       - name: Run tests
         run: |
           npm ci
           npx lerna run prepack
           npm run test-ci
+          cargo test --manifest-path packages/swc-plugin/Cargo.toml
         env:
           TZ: America/Toronto
 

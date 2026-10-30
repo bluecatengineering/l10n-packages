@@ -16,6 +16,6 @@ export default [
 		},
 	},
 	{
-		ignores: ['packages/*/dist/'],
+		ignores: ['packages/*/dist/', 'packages/swc-plugin/target/', 'packages/swc-plugin/tests/'],
 	},
 ];
