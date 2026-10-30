@@ -6,8 +6,7 @@
     "test": "jest",
     "test-ci": "jest --ci --silent --reporters=jest-junit --coverageReporters=cobertura",
     "lint": "eslint .",
-    "lint-ci": "eslint . -f @microsoft/eslint-formatter-sarif -o build/eslint-results.sarif",
-    "prepare": "husky"
+    "lint-ci": "eslint . -f @microsoft/eslint-formatter-sarif -o build/eslint-results.sarif"
   },
   "repository": {
     "type": "git",
@@ -27,11 +26,10 @@
     "@types/jest": "^30.0.0",
     "babel-plugin-macros": "^3.1.0",
     "eslint": "^9.19.0",
-    "husky": "^9.0.11",
     "jest": "^30.0.4",
     "jest-junit": "^17.0.0",
+    "lefthook": "^2.2.2",
     "lerna": "^10.0.0",
-    "lint-staged": "^17.0.7",
     "prettier": "^3.2.5",
     "rollup": "^4.16.4"
   },
@@ -74,21 +72,10 @@
     "outputDirectory": "build/test-results",
     "outputName": "unit.xml"
   },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix --max-warnings 0 --no-ignore",
-      "prettier --write"
-    ],
-    "*.ts": [
-      "prettier --write"
-    ],
-    "*.{md,yaml,yml}": [
-      "prettier --write"
-    ]
-  },
   "allowScripts": {
     "@parcel/watcher": false,
     "fsevents": false,
+    "lefthook@2.2.2": true,
     "nx": false,
     "unrs-resolver": false
   }
