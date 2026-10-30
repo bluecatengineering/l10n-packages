@@ -16,7 +16,7 @@ export type NumberStyle = 'decimal' | 'percent';
  * @param literals the template literals.
  * @param values the interpolated values.
  */
-export function t(literals: TemplateStringsArray, ...values: any[]): string;
+export function t(literals: TemplateStringsArray, ...values: unknown[]): string;
 
 /**
  * Selects a string among the specified choices based on the value of `key`.
