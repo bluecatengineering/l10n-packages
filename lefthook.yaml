@@ -3,6 +3,8 @@ pre-commit:
   jobs:
     - name: lint-js
       glob: '*.{js,mjs,ts}'
+      exclude:
+        - 'packages/swc-plugin/tests/**'
       run: node_modules/.bin/eslint --fix --max-warnings 0 --no-ignore {staged_files} && node_modules/.bin/prettier --write {staged_files}
       stage_fixed: true
 
@@ -10,6 +12,15 @@ pre-commit:
       glob: '*.{json,md,yaml,yml}'
       run: node_modules/.bin/prettier --write {staged_files}
       stage_fixed: true
+
+    - name: format-rust
+      glob: '*.rs'
+      run: rustfmt {staged_files}
+      stage_fixed: true
+
+    - name: lint-rust
+      glob: '*.rs'
+      run: cargo clippy --manifest-path packages/swc-plugin/Cargo.toml --all-targets -- -D warnings
 
 commit-msg:
   jobs:

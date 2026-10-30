@@ -26,6 +26,9 @@ jobs:
           node-version: 24
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Setup Rust
+        run: rustup toolchain install
+
       - name: Publish packages
         run: |
           npm ci

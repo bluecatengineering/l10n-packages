@@ -1,0 +1,102 @@
+  x Unknown macro "foo"
+   ,-[input.js:1:1]
+ 1 | import {t, select, plural, number, foo} from '@bluecateng/l10n.macro';
+   :                                    ^^^
+ 2 | import l10n from '@bluecateng/l10n.macro';
+   `----
+  x Only named imports are supported
+   ,-[input.js:2:1]
+ 1 | import {t, select, plural, number, foo} from '@bluecateng/l10n.macro';
+ 2 | import l10n from '@bluecateng/l10n.macro';
+   :        ^^^^
+   `----
+  x This macro requires one argument
+   ,-[input.js:4:1]
+ 3 | 
+ 4 | t();
+   : ^^^
+ 5 | select(1);
+   `----
+  x This macro requires two arguments
+   ,-[input.js:5:1]
+ 4 | t();
+ 5 | select(1);
+   : ^^^^^^^^^
+ 6 | select(1, 2);
+   `----
+  x The second argument must be an object literal
+   ,-[input.js:6:1]
+ 5 | select(1);
+ 6 | select(1, 2);
+   :           ^
+ 7 | select(1, {a: 'A'});
+   `----
+  x There must be a choice with the key "other"
+   ,-[input.js:7:1]
+ 6 | select(1, 2);
+ 7 | select(1, {a: 'A'});
+   :           ^^^^^^^^
+ 8 | plural(1, {other: 'x', offset: 1});
+   `----
+  x The offset must be the first choice
+   ,-[input.js:8:1]
+ 7 | select(1, {a: 'A'});
+ 8 | plural(1, {other: 'x', offset: 1});
+   :           ^^^^^^^^^^^^^^^^^^^^^^^
+ 9 | plural(1, {offset: 'x', other: 'x'});
+   `----
+  x The offset must be a number literal
+    ,-[input.js:9:1]
+  8 | plural(1, {other: 'x', offset: 1});
+  9 | plural(1, {offset: 'x', other: 'x'});
+    :                    ^^^
+ 10 | number();
+    `----
+  x This macro requires one or two arguments
+    ,-[input.js:10:1]
+  9 | plural(1, {offset: 'x', other: 'x'});
+ 10 | number();
+    : ^^^^^^^^
+ 11 | number(1, 2);
+    `----
+  x The second argument must be a string literal
+    ,-[input.js:11:1]
+ 10 | number();
+ 11 | number(1, 2);
+    :           ^
+ 12 | select`x`;
+    `----
+  x Only the t macro can be used as a template tag
+    ,-[input.js:12:1]
+ 11 | number(1, 2);
+ 12 | select`x`;
+    : ^^^^^^
+ 13 | const x = t;
+    `----
+  x Macros can only be called or used as template tags
+    ,-[input.js:13:1]
+ 12 | select`x`;
+ 13 | const x = t;
+    :           ^
+ 14 | t(...args);
+    `----
+  x Spread arguments are not supported
+    ,-[input.js:14:1]
+ 13 | const x = t;
+ 14 | t(...args);
+    :   ^^^
+ 15 | select(1, {...a, other: 'x'});
+    `----
+  x Choices must be key-value properties
+    ,-[input.js:15:1]
+ 14 | t(...args);
+ 15 | select(1, {...a, other: 'x'});
+    :            ^^^^
+ 16 | select(1, {[a]: 'A', other: 'x'});
+    `----
+  x Choice keys must be identifiers, strings, or numbers
+    ,-[input.js:16:1]
+ 15 | select(1, {...a, other: 'x'});
+ 16 | select(1, {[a]: 'A', other: 'x'});
+    :            ^^^
+    `----
