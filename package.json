@@ -17,7 +17,7 @@
     "@babel/core": "^8.0.1",
     "@babel/preset-env": "^8.0.2",
     "@bluecateng/commitlint-config-bluecateng": "^1.0.1",
-    "@bluecateng/eslint-config-node": "^5.0.2",
+    "@bluecateng/eslint-config-node": "^6.0.0",
     "@bluecateng/git-check-push": "^1.0.0",
     "@commitlint/cli": "^21.0.2",
     "@commitlint/config-conventional": "^21.0.2",
@@ -85,5 +85,11 @@
     "*.{md,yaml,yml}": [
       "prettier --write"
     ]
+  },
+  "allowScripts": {
+    "@parcel/watcher": false,
+    "fsevents": false,
+    "nx": false,
+    "unrs-resolver": false
   }
 }
