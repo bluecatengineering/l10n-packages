@@ -1,6 +1,6 @@
 {
   "name": "@bluecateng/l10n-swc-plugin",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "SWC plugin to compile the l10n macros",
   "license": "ISC",
   "sideEffects": false,
