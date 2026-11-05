@@ -1,24 +1,18 @@
 [package]
 name = "l10n_swc_plugin"
 version = "0.1.0"
-edition = "2021"
-publish = false
+edition.workspace = true
+publish.workspace = true
 
 [lib]
 crate-type = ["cdylib", "rlib"]
 
-[profile.release]
-codegen-units = 1
-lto = true
-opt-level = "s"
-strip = "symbols"
-
 [dependencies]
-serde = { version = "1", features = ["derive"] }
-serde_json = "1"
-sha1 = "0.10"
-swc_core = { version = "82", features = ["ecma_plugin_transform"] }
+l10n_macro.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+swc_core = { workspace = true, features = ["ecma_plugin_transform"] }
 
 [dev-dependencies]
-swc_core = { version = "82", features = ["ecma_plugin_transform", "testing_transform", "ecma_parser"] }
+swc_core = { workspace = true, features = ["ecma_plugin_transform", "testing_transform", "ecma_parser"] }
 testing = "27"

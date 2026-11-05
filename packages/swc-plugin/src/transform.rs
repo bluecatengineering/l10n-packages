@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use sha1::{Digest, Sha1};
+use l10n_macro::{convert_call, convert_template, register_import, Context, KeyBuilder, Macro, MACRO_MODULE};
 use swc_core::{
 	common::{
 		comments::{Comment, CommentKind, Comments},
@@ -13,10 +13,6 @@ use swc_core::{
 	},
 };
 
-use crate::convert::{convert_call, convert_template, Context, Macro};
-
-pub const MACRO_MODULE: &str = "@bluecateng/l10n.macro";
-
 pub struct Options {
 	/// The specifier used to import the l10n module.
 	pub import_source: String,
@@ -27,9 +23,9 @@ pub struct Options {
 pub fn l10n_macro<C: Comments>(comments: C, options: Options) -> impl Pass {
 	visit_mut_pass(L10nMacro {
 		comments,
+		keys: KeyBuilder::new(options.hash_length),
 		options,
 		macros: HashMap::new(),
-		hashes: HashMap::new(),
 		l10n: None,
 	})
 }
@@ -38,7 +34,7 @@ struct L10nMacro<C: Comments> {
 	comments: C,
 	options: Options,
 	macros: HashMap<Id, Macro>,
-	hashes: HashMap<String, String>,
+	keys: KeyBuilder,
 	l10n: Option<Ident>,
 }
 
@@ -56,32 +52,8 @@ fn is_directive(item: &ModuleItem) -> bool {
 
 impl<C: Comments> L10nMacro<C> {
 	fn register_import(&mut self, decl: &ImportDecl) {
-		if decl.type_only {
-			return;
-		}
-		for specifier in &decl.specifiers {
-			match specifier {
-				ImportSpecifier::Named(ImportNamedSpecifier {
-					local,
-					imported,
-					is_type_only: false,
-					..
-				}) => {
-					let name = match imported {
-						Some(ModuleExportName::Ident(ident)) => ident.sym.to_string(),
-						Some(ModuleExportName::Str(str)) => str.value.to_string_lossy().into_owned(),
-						None => local.sym.to_string(),
-					};
-					match Macro::from_name(&name) {
-						Some(m) => {
-							self.macros.insert(local.to_id(), m);
-						}
-						None => emit_error(specifier.span(), &format!("Unknown macro \"{name}\"")),
-					}
-				}
-				ImportSpecifier::Named(_) => {}
-				_ => emit_error(specifier.span(), "Only named imports are supported"),
-			}
+		for error in register_import(decl, &mut self.macros) {
+			emit_error(error.span, &error.message);
 		}
 	}
 
@@ -100,20 +72,10 @@ impl<C: Comments> L10nMacro<C> {
 	}
 
 	fn build_key(&mut self, string: &str, span: Span) -> String {
-		let Some(length) = self.options.hash_length.filter(|&length| length > 0) else {
-			return string.to_string();
-		};
-		let digest = Sha1::digest(string.as_bytes());
-		let hex = digest.iter().map(|b| format!("{b:02x}")).collect::<String>();
-		let hash = hex.get(..length).unwrap_or(&hex).to_string();
-		match self.hashes.get(&hash) {
-			Some(old) if old != string => emit_error(span, "Duplicated hash, increase hash length"),
-			Some(_) => {}
-			None => {
-				self.hashes.insert(hash.clone(), string.to_string());
-			}
-		}
-		hash
+		self.keys.build(string).unwrap_or_else(|error| {
+			emit_error(span, &error.to_string());
+			error.0
+		})
 	}
 
 	fn replace_macro(&mut self, expr: &mut Expr) {

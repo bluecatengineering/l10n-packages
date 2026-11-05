@@ -5,7 +5,6 @@ use swc_core::{
 	plugin::{plugin_transform, proxies::TransformPluginProgramMetadata},
 };
 
-mod convert;
 mod path;
 mod transform;
 

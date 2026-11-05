@@ -1,5 +1,5 @@
-//! Port of `@bluecateng/l10n-ast2icu`. The generated strings are used as message keys and must match what
-//! `l10n-cli` extracts, so any change here must be mirrored there.
+//! Port of `@bluecateng/l10n-ast2icu`. The generated strings are used as message keys and must match what the babel
+//! macro generates, so any change here must be mirrored there.
 
 use std::{borrow::Cow, collections::HashMap};
 
@@ -101,8 +101,8 @@ struct Choice<'a> {
 }
 
 /// Formats a number the same way JavaScript does when converting it to a string, for the values that can be
-/// expected in a numeric literal used as a choice key.
-fn js_number(value: f64) -> String {
+/// expected in a numeric literal used as a choice key or in a compiled catalog.
+pub fn js_number(value: f64) -> String {
 	if value.fract() == 0.0 && value.abs() < 1e21 {
 		format!("{value:.0}")
 	} else {
