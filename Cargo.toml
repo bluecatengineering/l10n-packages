@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["crates/*", "packages/swc-plugin"]
+members = ["crates/*", "packages/cli", "packages/swc-plugin"]
 
 [workspace.package]
 edition = "2021"
