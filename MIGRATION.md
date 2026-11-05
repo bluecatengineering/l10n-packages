@@ -6,6 +6,8 @@
 
 - **Configuration**: only the `"bc-l10n"` object in `package.json` is read. Other configuration files (`.bc-l10nrc`, `.bc-l10nrc.json`, `.bc-l10nrc.yaml`, `bc-l10n.config.js`, etc.) are no longer supported, move their contents to `package.json`.
 - **Syntax**: proposals which are not yet part of the language, such as `do` expressions, are reported as syntax errors. JSX is still allowed in `.js`, `.jsx` and `.tsx` files, but not in `.ts` files.
+- **Platforms**: the package contains executables for macOS (arm64 and x64) and Linux with glibc 2.17 or later (arm64 and x64). Windows and Linux distributions which use musl, such as Alpine, are not supported.
+- **Install script**: the package has an install script which replaces the `l10n-cli` command with the executable, so it runs without starting Node. If your npm version asks to approve the install scripts of dependencies, run `npm install-scripts approve @bluecateng/l10n-cli`; without the install script the command still works, but it starts Node first.
 - **Node API**: the package no longer exports the `extract` and `build` functions, use the command line instead.
 - **Invalid macro usages**: in addition to the errors reported before, macros used without being called (`const x = t;`) and macros other than `t` used as template tags are reported, as the SWC plugin does. All the errors are now reported at once, with their file, line and column.
 - **Nested macros**: macros used inside the arguments of another macro (``select(kind, {a: t`A`, other: 'Other'})``) are now extracted as separate strings, they were previously skipped.

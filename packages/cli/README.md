@@ -10,6 +10,21 @@ Upgrading from an older major version? See the [migration guide](https://github.
 npm i -D @bluecateng/l10n-cli
 ```
 
+The command line is a native executable, the package contains the executables for these platforms:
+
+- macOS on Apple silicon (arm64) and Intel (x64).
+- Linux with glibc 2.17 or later, on arm64 and x64. Distributions which use musl, such as Alpine, are not supported.
+
+When installed with npm, an install script replaces the `l10n-cli` command with the executable for the current platform,
+so it runs without starting Node.
+If the install script does not run (other package managers, `--ignore-scripts`, or npm blocking the install scripts of
+dependencies), the command starts Node to run the executable, which takes a few more milliseconds.
+To allow the install script with npm:
+
+```shell
+npm install-scripts approve @bluecateng/l10n-cli
+```
+
 ## Configuration
 
 Add an object with this format to `package.json`. All paths are relative to the directory where `package.json` is located.
