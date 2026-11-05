@@ -7,7 +7,66 @@ on:
 permissions: read-all
 
 jobs:
+  native:
+    name: Build l10n-cli for ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        include:
+          - name: darwin-arm64
+            os: macos-latest
+            target: aarch64-apple-darwin
+          - name: darwin-x64
+            os: macos-latest
+            target: x86_64-apple-darwin
+          # the Linux executables are linked with zig against glibc 2.17, so they also run on old distributions
+          - name: linux-x64-gnu
+            os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            glibc: '2.17'
+          - name: linux-arm64-gnu
+            os: ubuntu-latest
+            target: aarch64-unknown-linux-gnu
+            glibc: '2.17'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # tag=v7.0.1
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Setup Rust
+        run: |
+          rustup toolchain install
+          rustup target add ${{ matrix.target }}
+
+      - name: Setup zig
+        if: matrix.glibc
+        run: |
+          python3 -m venv "$RUNNER_TEMP/zig"
+          "$RUNNER_TEMP/zig/bin/pip" install ziglang==0.17.1
+          echo "$RUNNER_TEMP/zig/bin" >> "$GITHUB_PATH"
+          cargo install --locked cargo-zigbuild@0.24.1
+
+      - name: Build
+        run: |
+          if [ -n "${{ matrix.glibc }}" ]; then
+            cargo zigbuild --release -p l10n-cli --target ${{ matrix.target }}.${{ matrix.glibc }}
+          else
+            cargo build --release -p l10n-cli --target ${{ matrix.target }}
+          fi
+
+      - name: Upload executable
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # tag=v7.0.2
+        with:
+          name: native-${{ matrix.name }}
+          path: target/${{ matrix.target }}/release/l10n-cli
+          if-no-files-found: error
+
   build:
+    needs: native
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -28,6 +87,19 @@ jobs:
 
       - name: Setup Rust
         run: rustup toolchain install
+
+      - name: Download executables
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # tag=v8.0.2
+        with:
+          pattern: native-*
+          path: packages/cli/native
+
+      - name: Prepare executables
+        working-directory: packages/cli/native
+        # the artifacts do not keep the file permissions
+        run: |
+          for dir in native-*; do mv "$dir" "${dir#native-}"; done
+          chmod +x */l10n-cli
 
       - name: Publish packages
         run: |

@@ -3,33 +3,36 @@
   "version": "0.3.0",
   "description": "Command line utilities for l10n",
   "license": "ISC",
-  "sideEffects": false,
   "type": "module",
-  "main": "./dist/index.js",
-  "exports": "./dist/index.js",
   "engines": {
     "node": "^22.18.0 || >=24.11.0"
   },
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "cpu": [
+    "arm64",
+    "x64"
+  ],
   "scripts": {
-    "prepack": "rollup -c"
+    "build-native": "node scripts/build-native.js",
+    "postinstall": "node install.js",
+    "prepublishOnly": "node scripts/check-native.js"
   },
   "files": [
-    "dist",
-    "cli.js",
+    "bin",
+    "lib",
+    "native",
+    "install.js",
     "README.md"
   ],
-  "bin": "./cli.js",
+  "bin": {
+    "l10n-cli": "./bin/l10n-cli"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/bluecatengineering/l10n-packages.git",
     "directory": "packages/cli"
-  },
-  "dependencies": {
-    "@babel/parser": "^8.0.4",
-    "@babel/traverse": "^8.0.4",
-    "@bluecateng/l10n-ast2icu": "^0.2.0",
-    "@bluecateng/l10n-config": "^0.2.0",
-    "@bluecateng/l10n-icu2obj": "^0.2.0",
-    "pofile": "^1.1.1"
   }
 }

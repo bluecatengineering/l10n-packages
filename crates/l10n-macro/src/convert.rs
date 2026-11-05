@@ -1,5 +1,5 @@
-//! Port of `@bluecateng/l10n-ast2icu`. The generated strings are used as message keys and must match what
-//! `l10n-cli` extracts, so any change here must be mirrored there.
+//! Port of `@bluecateng/l10n-ast2icu`. The generated strings are used as message keys and must match what the babel
+//! macro generates, so any change here must be mirrored there.
 
 use std::{borrow::Cow, collections::HashMap};
 
