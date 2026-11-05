@@ -95,3 +95,20 @@ fn reports_missing_configuration() {
 		"L10n configuration is missing, add \"bc-l10n\" object to package.json\n"
 	);
 }
+
+#[test]
+fn builds_the_catalogs() {
+	let tmp = project();
+	let root = tmp.path();
+	assert!(run(root, &[]).0);
+	assert_eq!(run(root, &["build", "dist"]), (true, String::new()));
+	assert_eq!(
+		fs::read_to_string(root.join("dist/l10n/fr.po.js")).unwrap(),
+		r#"export default ["fr",{"f792":"Bye","f7ff":"Hello"}]"#
+	);
+	assert!(root.join("dist/l10n/en.po.js").exists());
+
+	let (success, stderr) = run(root, &["build"]);
+	assert!(!success);
+	assert_eq!(stderr, "The build command requires the output directory\n");
+}

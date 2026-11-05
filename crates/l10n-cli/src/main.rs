@@ -9,6 +9,7 @@ use std::{collections::BTreeMap, env, path::Path, process::ExitCode};
 use l10n_macro::KeyBuilder;
 
 mod catalog;
+mod compile;
 mod config;
 mod extract;
 mod po;
@@ -106,7 +107,7 @@ fn run(args: &[String]) -> Result<(), String> {
 	let cwd = env::current_dir().map_err(|error| format!("Error reading the current directory: {error}"))?;
 	match parse_args(args)? {
 		Command::Extract { clean, locale, sources } => extract(&cwd, clean, locale.as_deref(), &sources),
-		Command::Build { .. } => Err("The build command is not implemented yet".into()),
+		Command::Build { out_dir } => compile::build(&cwd, &config::load(&cwd)?, &out_dir),
 	}
 }
 

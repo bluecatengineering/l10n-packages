@@ -5,6 +5,7 @@ edition.workspace = true
 publish.workspace = true
 
 [dependencies]
+formatjs_icu_messageformat_parser = { version = "2", default-features = false }
 humantime = "2"
 icu_collator = "2"
 icu_locale_core = "2"

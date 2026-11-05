@@ -104,6 +104,10 @@ Each catalog is written at the path corresponding to its `catalogPath`, made rel
 
 - Example: with `sourcePath` `"src"` and `catalogPath` `"src/l10n/{locale}"`, the `en` catalog is written to `<outDir>/l10n/en.po.js`.
 
+The messages can use the `number`, `date` and `time` argument types with the styles supported by
+`Intl.NumberFormat` and `Intl.DateTimeFormat`, skeletons (`::currency/USD`) are not supported.
+Obsolete entries are not included.
+
 ### Supported syntax
 
 The source files are parsed as TypeScript, files with the extensions `.js`, `.jsx` and `.tsx` can also contain JSX.
