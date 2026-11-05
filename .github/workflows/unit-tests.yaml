@@ -31,7 +31,7 @@ jobs:
           npm ci
           npx lerna run prepack
           npm run test-ci
-          cargo test --manifest-path packages/swc-plugin/Cargo.toml
+          cargo test --workspace
         env:
           TZ: America/Toronto
 
