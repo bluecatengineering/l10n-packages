@@ -10,7 +10,8 @@ export default [
 		},
 	},
 	{
-		files: ['packages/cli/cli.js'],
+		// run directly by node, without bundling
+		files: ['packages/cli/install.js', 'packages/cli/scripts/*.js'],
 		rules: {
 			'import/extensions': ['warn', 'always'],
 		},

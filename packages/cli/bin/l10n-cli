@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+// Runs the native executable, the install script replaces this file with the executable when it can.
+import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+
+import {nativePath} from '../lib/platform.js';
+
+try {
+	const path = nativePath(fileURLToPath(new URL('..', import.meta.url)));
+	const {status, signal, error} = spawnSync(path, process.argv.slice(2), {stdio: 'inherit'});
+	if (error) {
+		throw error.code === 'ENOENT'
+			? new Error(`The executable ${path} is missing, try reinstalling @bluecateng/l10n-cli`)
+			: error;
+	}
+	if (signal) {
+		process.kill(process.pid, signal);
+	}
+	process.exitCode = status;
+} catch (error) {
+	console.error(error.message);
+	process.exitCode = 1;
+}
