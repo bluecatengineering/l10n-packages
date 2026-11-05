@@ -657,12 +657,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "l10n_macro"
+version = "0.0.0"
+dependencies = [
+ "sha1",
+ "swc_core",
+]
+
+[[package]]
 name = "l10n_swc_plugin"
 version = "0.1.0"
 dependencies = [
+ "l10n_macro",
  "serde",
  "serde_json",
- "sha1",
  "swc_core",
  "testing",
 ]
