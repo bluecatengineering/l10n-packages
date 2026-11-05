@@ -1,0 +1,25 @@
+[package]
+name = "l10n-cli"
+version = "0.0.0"
+edition.workspace = true
+publish.workspace = true
+
+[dependencies]
+humantime = "2"
+icu_collator = "2"
+icu_locale_core = "2"
+l10n_macro.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+swc_core = { workspace = true, features = [
+	"common",
+	"ecma_ast",
+	"ecma_parser",
+	"ecma_parser_typescript",
+	"ecma_transforms",
+	"ecma_visit",
+] }
+walkdir = "2"
+
+[dev-dependencies]
+tempfile = "3"

@@ -13,6 +13,8 @@ npm i -D @bluecateng/l10n-cli
 ## Configuration
 
 Add an object with this format to `package.json`. All paths are relative to the directory where `package.json` is located.
+The configuration is searched in the `package.json` of the current directory and its ancestors.
+Other configuration files (`.bc-l10nrc`, `.bc-l10nrc.json`, `.bc-l10nrc.yaml`, `bc-l10n.config.js`, etc.) are not supported.
 
 ```
 "bc-l10n": {
@@ -73,11 +75,16 @@ The command line can be used in two modes:
 - during development to extract strings from individual files for a single locale.
 - before committing to extract strings from all source files for all configured locales.
 
-`npx @bluecateng/l10n-cli [ -l <locale> ] [ <file-paths> ... ]`
+`npx @bluecateng/l10n-cli [ -c ] [ -l <locale> ] [ <file-paths> ... ]`
 
-#### locale
+#### -c, --clean
 
-The single locale code to update. If not specified, all the configured locales will be updated.
+Removes the obsolete entries from the catalogs.
+
+#### -l, --locale
+
+The single locale code to update. If not specified, all the configured locales will be updated,
+and the entries which are no longer used are marked as obsolete.
 
 #### file-paths
 
@@ -96,6 +103,14 @@ The directory where the compiled `.po.js` files will be written.
 Each catalog is written at the path corresponding to its `catalogPath`, made relative to `sourcePath` and rooted at `outDir`.
 
 - Example: with `sourcePath` `"src"` and `catalogPath` `"src/l10n/{locale}"`, the `en` catalog is written to `<outDir>/l10n/en.po.js`.
+
+### Supported syntax
+
+The source files are parsed as TypeScript, files with the extensions `.js`, `.jsx` and `.tsx` can also contain JSX.
+JSX is not allowed in `.ts` files, where it would conflict with type assertions (`<Type>value`).
+
+Proposals which are not yet part of the language, such as `do` expressions, are not supported and are reported as
+syntax errors.
 
 ## Usage as a file watcher in JetBrains IDEs (WebStorm/IDEA)
 
