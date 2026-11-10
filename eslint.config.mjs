@@ -10,12 +10,13 @@ export default [
 		},
 	},
 	{
-		files: ['packages/cli/cli.js'],
+		// run directly by node, without bundling
+		files: ['packages/cli/install.js', 'packages/cli/scripts/*.js'],
 		rules: {
 			'import/extensions': ['warn', 'always'],
 		},
 	},
 	{
-		ignores: ['packages/*/dist/', 'packages/swc-plugin/target/', 'packages/swc-plugin/tests/'],
+		ignores: ['packages/*/dist/', 'target/', 'packages/swc-plugin/tests/'],
 	},
 ];
