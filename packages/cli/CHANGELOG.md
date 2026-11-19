@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.0](https://github.com/bluecatengineering/l10n-packages/compare/%40bluecateng%2Fl10n-cli%400.3.0...%40bluecateng%2Fl10n-cli%400.4.0) (2026-11-19)
+
+### ⚠ BREAKING CHANGES
+
+- the package no longer exports the extract and build
+  functions, only the "bc-l10n" configuration in package.json is supported,
+  syntax which is not part of the language is reported as an error, and
+  Windows is not supported. See the migration guide for the other changes.
+
+### Features
+
+- convert l10n-cli to a native executable ([5c720fa](https://github.com/bluecatengineering/l10n-packages/commit/5c720fa6464691ec17117e0d136c86ee9a169690))
+
 ## [0.3.0](https://github.com/bluecatengineering/l10n-packages/compare/%40bluecateng%2Fl10n-cli%400.2.2...%40bluecateng%2Fl10n-cli%400.3.0) (2026-08-14)
 
 ### ⚠ BREAKING CHANGES

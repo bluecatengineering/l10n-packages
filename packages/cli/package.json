@@ -1,6 +1,6 @@
 {
   "name": "@bluecateng/l10n-cli",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Command line utilities for l10n",
   "license": "ISC",
   "type": "module",
