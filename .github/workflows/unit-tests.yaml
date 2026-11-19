@@ -2,7 +2,7 @@ name: Jest
 
 on:
   push:
-  pull_request:
+    branches: ['*']
 
 permissions: read-all
 
