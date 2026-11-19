@@ -6,14 +6,14 @@ export default [
 	...tseslint.configs.recommended.map((config) => ({...config, files: ['**/*.ts']})),
 	{
 		rules: {
-			'import/extensions': ['warn', 'never', {json: 'always'}],
+			'import-x/extensions': ['warn', 'never', {json: 'always'}],
 		},
 	},
 	{
 		// run directly by node, without bundling
 		files: ['packages/cli/install.js', 'packages/cli/scripts/*.js'],
 		rules: {
-			'import/extensions': ['warn', 'always'],
+			'import-x/extensions': ['warn', 'always'],
 		},
 	},
 	{
